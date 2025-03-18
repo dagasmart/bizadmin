@@ -1,0 +1,18 @@
+<?php
+
+namespace {namespace};
+
+use DagaSmart\BizAdmin\Renderers\TextControl;
+use DagaSmart\BizAdmin\Extend\ServiceProvider;
+
+class {className}ServiceProvider extends ServiceProvider
+{
+	{property}
+
+	public function settingForm()
+	{
+	    return $this->baseSettingForm()->body([
+            TextControl::make()->name('value')->label('Value')->required(true),
+	    ]);
+	}
+}

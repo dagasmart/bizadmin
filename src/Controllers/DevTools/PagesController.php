@@ -1,0 +1,65 @@
+<?php
+
+namespace DagaSmart\BizAdmin\Controllers\DevTools;
+
+use DagaSmart\BizAdmin\Services\AdminPageService;
+use DagaSmart\BizAdmin\Controllers\AdminController;
+
+class PagesController extends AdminController
+{
+    protected string $serviceName = AdminPageService::class;
+
+    public function list()
+    {
+        $crud = $this->baseCRUD()
+            ->filter($this->baseFilter()->body([
+                amis()->TextControl('title', admin_trans('admin.pages.title'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.pages.title')),
+                amis()->TextControl('sign', admin_trans('admin.pages.sign'))
+                    ->size('md')
+                    ->clearable()
+                    ->placeholder(admin_trans('admin.pages.sign')),
+            ]))
+            ->headerToolbar([
+                $this->createButton(true),
+                ...$this->baseHeaderToolBar(),
+            ])
+            ->columns([
+                amis()->TableColumn('id', 'ID')->sortable(),
+                amis()->TableColumn('title', admin_trans('admin.pages.title')),
+                amis()->TableColumn('sign', admin_trans('admin.pages.sign')),
+                amis()->TableColumn('updated_at', admin_trans('admin.created_at'))->type('datetime')->sortable(true),
+                $this->rowActions([
+                    $this->rowEditButton(true),
+                    $this->rowDeleteButton(),
+                ]),
+            ]);
+
+        return $this->baseList($crud);
+    }
+
+    public function form()
+    {
+        return $this->baseForm()->body([
+            amis()->TextControl('title', admin_trans('admin.pages.title'))->required(),
+            amis()->TextControl('sign', admin_trans('admin.pages.sign'))->required(),
+            amis()->SubFormControl('page', admin_trans('admin.pages.page'))->form(
+                amis()->Form()->className('h-full')->set('size', 'full')->title('')->body(
+                    amis('custom-amis-editor')
+                        ->name('schema')
+                        ->label('')
+                        ->mode('normal')
+                        ->className('h-full')
+                )
+            )->required(),
+        ]);
+    }
+
+
+    public function detail($id)
+    {
+        return $this->baseDetail()->body([]);
+    }
+}

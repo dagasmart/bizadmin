@@ -1,0 +1,50 @@
+{
+    "name": "dagasmart/bizadmin",
+    "description": "基于 laravel、amis 开发的后台框架~",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dagasmart",
+            "email": "dagasmart_email@qq.com",
+            "homepage": "https://github.com/dagasmart"
+        }
+    ],
+    "homepage": "https://github.com/dagasmart/bizadmin",
+    "support": {
+        "email": "dagasmart_email@qq.com",
+        "issues": "https://github.com/DagaSmart/bizadmin/issues",
+        "forum": "https://github.com/orgs/bizadmin/discussions",
+        "wiki": "https://doc.bizadmin.com/"
+    },
+    "keywords": [
+        "laravel",
+        "bizadmin",
+        "admin",
+        "amis"
+    ],
+    "require": {
+        "php": ">=8.2",
+        "illuminate/support": ">=11",
+        "dagasmart/laravel-support": "*",
+        "ext-zip": "*",
+        "ext-gd": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DagaSmart\\BizAdmin\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DagaSmart\\BizAdmin\\AdminServiceProvider"
+            ],
+            "aliases": {
+                "BizAdmin": "DagaSmart\\BizAdmin\\Facades\\BizAdmin"
+            }
+        }
+    }
+}
