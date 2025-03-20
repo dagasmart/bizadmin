@@ -2,7 +2,7 @@
 
 return [
     // 应用名称
-    'name'           => 'Owl Admin',
+    'name'           => 'Biz Admin',
 
     // 应用 logo
     'logo'           => '/admin-assets/logo.png',
@@ -96,7 +96,7 @@ return [
          */
         'keep_alive_exclude' => [],
         // 底部信息
-        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">Owl Admin</a>',
+        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">Biz Admin</a>',
     ],
 
     'models' => [

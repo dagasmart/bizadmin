@@ -1,7 +1,7 @@
 {
   "name": "bizadmin",
   "version": "1.0.0",
-  "description": "Owl Admin",
+  "description": "Biz Admin",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",

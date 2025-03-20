@@ -58,7 +58,7 @@ DB_PASSWORD=xxxxxx
 php artisan install:api
 ```
 
-##### 3. 获取 `Owl Admin`
+##### 3. 获取 `Biz Admin`
 
 ```shell
 composer require dagasmart/bizadmin
