@@ -5,15 +5,15 @@
     "authors": [
         {
             "name": "dagasmart",
-            "email": "dagasmart_email@qq.com",
+            "email": "dagasmart@qq.com",
             "homepage": "https://github.com/dagasmart"
         }
     ],
     "homepage": "https://github.com/dagasmart/bizadmin",
     "support": {
-        "email": "dagasmart_email@qq.com",
-        "issues": "https://github.com/DagaSmart/bizadmin/issues",
-        "forum": "https://github.com/orgs/bizadmin/discussions",
+        "email": "dagasmart@qq.com",
+        "issues": "https://github.com/dagasmart/bizadmin/issues",
+        "forum": "https://github.com/dagasmart/bizadmin/discussions",
         "wiki": "https://doc.bizadmin.com/"
     },
     "keywords": [

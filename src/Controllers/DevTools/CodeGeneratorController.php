@@ -878,7 +878,7 @@ class CodeGeneratorController extends AdminController
         return amis()->Card()->body([
             amis()
                 ->Alert()
-                ->body(admin_trans('admin.code_generators.column_warning') . " <a href='https://github.com/DagaSmart/bizadmin/issues/5' target='_blank'>" . admin_trans('admin.show') . "</a> ")
+                ->body(admin_trans('admin.code_generators.column_warning') . " <a href='https://github.com/dagasmart/bizadmin/issues/5' target='_blank'>" . admin_trans('admin.show') . "</a> ")
                 ->level('warning')
                 ->showCloseButton()
                 ->showIcon(),
