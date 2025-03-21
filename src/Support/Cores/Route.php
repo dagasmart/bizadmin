@@ -16,7 +16,10 @@ use DagaSmart\BizAdmin\Controllers\{AuthController,
     DevTools\EditorController,
     DevTools\ExtensionController,
     DevTools\RelationshipController,
-    DevTools\CodeGeneratorController
+    DevTools\CodeGeneratorController,
+    SystemSoftController,
+    SystemMessageController,
+    SystemMerchantController
 };
 
 class Route
@@ -73,6 +76,12 @@ class Route
                 $router->resource('admin_menus', AdminMenuController::class);
                 $router->resource('admin_roles', AdminRoleController::class);
                 $router->resource('admin_permissions', AdminPermissionController::class);
+
+                /* 注意，具有相同路由时，数据请求路由在页面路由之前，否则报错 */
+                $router->get('message/{type}', [SystemMessageController::class, 'mapping']);//用户(下拉列表)
+                $router->resource('message', SystemMessageController::class);//消息
+                $router->resource('soft', SystemSoftController::class);//软件
+                $router->resource('merchant', SystemMerchantController::class);//商户
 
                 $router->post('admin_roles/save_permissions', [AdminRoleController::class, 'savePermissions']);
                 $router->post('_admin_permissions_auto_generate', [AdminPermissionController::class, 'autoGenerate']);

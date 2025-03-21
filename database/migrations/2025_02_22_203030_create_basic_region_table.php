@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Slowlyo\OwlAdmin\Models\BasicRegion;
+use DagaSmart\BizAdmin\Models\BasicRegion;
 
 return new class extends Migration
 {

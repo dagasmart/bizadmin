@@ -1,9 +1,9 @@
 <?php
 
-namespace Slowlyo\OwlAdmin\Models;
+namespace DagaSmart\BizAdmin\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Slowlyo\OwlAdmin\Models\BaseModel as Model;
+use DagaSmart\BizAdmin\Models\BaseModel as Model;
 
 /**
  * 省市区数据模型
