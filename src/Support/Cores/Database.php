@@ -343,8 +343,13 @@ class Database
         $this->fillCodeGeneratorFields();
     }
 
+    /**
+     * 多库时用：Schema::getCurrentSchemaListing()
+     * @return array|mixed[]
+     */
     public static function getTables()
     {
+
         try {
             return collect(json_decode(json_encode(Schema::getAllTables()), true))
                 ->map(fn($i) => config('database.default') == 'sqlite' ? $i['name'] : array_shift($i))
@@ -353,7 +358,7 @@ class Database
         }
 
         // laravel 11+
-        return array_column(Schema::getTables(), 'name');
+        return array_column(Schema::getTables(Schema::getCurrentSchemaName()), 'name');
     }
 
     /**

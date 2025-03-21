@@ -27,7 +27,8 @@
         "illuminate/support": ">=11",
         "dagasmart/laravel-support": "*",
         "ext-zip": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
