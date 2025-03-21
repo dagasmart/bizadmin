@@ -17,6 +17,8 @@ use DagaSmart\BizAdmin\Controllers\{AuthController,
     DevTools\ExtensionController,
     DevTools\RelationshipController,
     DevTools\CodeGeneratorController,
+    BasicDictController,
+    BasicRegionController,
     SystemSoftController,
     SystemMessageController,
     SystemMerchantController
@@ -68,6 +70,11 @@ class Route
 
             $router->resource('dashboard', HomeController::class);
 
+            $router->group(['prefix' => 'basic'], function (Router $router) {
+                $router->resource('dict', BasicDictController::class);
+                $router->resource('region', BasicRegionController::class);
+            });
+
             $router->group(['prefix' => 'system'], function (Router $router) {
                 $router->get('/', [AdminUserController::class, 'index']);
 
@@ -77,11 +84,11 @@ class Route
                 $router->resource('admin_roles', AdminRoleController::class);
                 $router->resource('admin_permissions', AdminPermissionController::class);
 
-                /* ×¢Òâ£¬¾ßÓÐÏàÍ¬Â·ÓÉÊ±£¬Êý¾ÝÇëÇóÂ·ÓÉÔÚÒ³ÃæÂ·ÓÉÖ®Ç°£¬·ñÔò±¨´í */
-                $router->get('message/{type}', [SystemMessageController::class, 'mapping']);//ÓÃ»§(ÏÂÀ­ÁÐ±í)
-                $router->resource('message', SystemMessageController::class);//ÏûÏ¢
-                $router->resource('soft', SystemSoftController::class);//Èí¼þ
-                $router->resource('merchant', SystemMerchantController::class);//ÉÌ»§
+                /* æ³¨æ„ï¼Œå…·æœ‰ç›¸åŒè·¯ç”±æ—¶ï¼Œæ•°æ®è¯·æ±‚è·¯ç”±åœ¨é¡µé¢è·¯ç”±ä¹‹å‰ï¼Œå¦åˆ™æŠ¥é”™ */
+                $router->get('message/{type}', [SystemMessageController::class, 'mapping']);//ç”¨æˆ·(ä¸‹æ‹‰åˆ—è¡¨)
+                $router->resource('message', SystemMessageController::class);//æ¶ˆæ¯
+                $router->resource('soft', SystemSoftController::class);//è½¯ä»¶
+                $router->resource('merchant', SystemMerchantController::class);//å•†æˆ·
 
                 $router->post('admin_roles/save_permissions', [AdminRoleController::class, 'savePermissions']);
                 $router->post('_admin_permissions_auto_generate', [AdminPermissionController::class, 'autoGenerate']);

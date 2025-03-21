@@ -2,6 +2,9 @@
 
 return [
     'dashboard'  => 'Dashboard',
+    'admin_basic'      => 'Basic',
+    'admin_dict'       => 'Dict',
+    'admin_region'     => 'Region',
     'admin_system'     => 'Admin',
     'admin_users'      => 'Users',
     'admin_roles'      => 'Roles',
