@@ -126,7 +126,7 @@ return [
             'engine' => env('DB_ENGINE', 'InnoDB'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
+            'search_path' => env('DB_SEARCH_PATH', 'public'),
             'sslmode' => 'prefer',
         ],
 

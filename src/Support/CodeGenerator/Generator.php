@@ -94,13 +94,11 @@ class Generator
 
                 try {
                     $databaseSchemaBuilder = Schema::connection($connectName);
+
                     //判断模式连接
-                    if(isset($value['search_path'])) {
-                        if($search_path = trim($value['search_path'])) {
-                            $value['database'] = $value['database'] . '.' . $search_path;
-                        }
-                    }
-                    $tables = collect($databaseSchemaBuilder->getTables($value['database']))
+                    $schema = $value['search_path'] ? $value['search_path'] : $value['database'];
+
+                    $tables = collect($databaseSchemaBuilder->getTables($schema))
                         ->pluck('name')
                         ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
                         ->toArray();
