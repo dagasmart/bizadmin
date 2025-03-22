@@ -98,7 +98,7 @@ class Generator
                     //判断模式连接
                     $schema = $value['search_path'] ? $value['search_path'] : $value['database'];
 
-                    $tables = collect($databaseSchemaBuilder->getTables($schema))
+                    $tables = collect($databaseSchemaBuilder->getTables($value['database']))
                         ->pluck('name')
                         ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
                         ->toArray();

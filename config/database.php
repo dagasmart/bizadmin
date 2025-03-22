@@ -126,7 +126,7 @@ return [
             'engine' => env('DB_ENGINE', 'InnoDB'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => env('DB_SEARCH_PATH', 'public'),
+            'search_path' => env('DB_SEARCH'),
             'sslmode' => 'prefer',
         ],
 
@@ -159,7 +159,7 @@ return [
             'engine' => env('DB_ENGINE_BUS', 'InnoDB'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
+            'search_path' => env('DB_SEARCH_BUS'),
             'sslmode' => 'prefer',
         ],
         //连接外部mysql业务库
