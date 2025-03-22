@@ -6,11 +6,11 @@ use DagaSmart\BizAdmin\Admin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SystemMerchant extends BaseModel
+class AdminPermissionMenu extends BaseModel
 {
     use SoftDeletes;
 
-    protected $table = 'system_merchant';
+    protected $table = 'admin_permission_menu';
 
     protected $primaryKey = 'id';
 

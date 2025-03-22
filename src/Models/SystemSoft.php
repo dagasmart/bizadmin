@@ -2,14 +2,14 @@
 
 namespace DagaSmart\BizAdmin\Models;
 
-use App\Libs\Common;
 use DagaSmart\BizAdmin\Admin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DagaSmart\BizAdmin\Traits\CommonTrait;
 
 class SystemSoft extends BaseModel
 {
-    use Common, SoftDeletes;
+    use CommonTrait, SoftDeletes;
 
     protected $table = 'system_soft';
 
