@@ -2,7 +2,6 @@
 
 namespace DagaSmart\BizAdmin\Models;
 
-use DagaSmart\BizAdmin\Admin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DagaSmart\BizAdmin\Traits\CommonTrait;
