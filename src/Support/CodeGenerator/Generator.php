@@ -80,10 +80,8 @@ class Generator
 
     public function getDatabaseColumns($db = null, $tb = null)
     {
-        $databases = Arr::where(config('database.connections', []), function ($value) {
-            $supports[] = env('DB_CONNECTION', 'mysql');
-
-            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
+        $databases = Arr::where(config('database.connections', []), function ($value, $key) {
+            return $key == config('database.default');
         });
 
         $data = [];
@@ -96,9 +94,9 @@ class Generator
                     $databaseSchemaBuilder = Schema::connection($connectName);
 
                     //判断模式连接
-                    $schema = $value['search_path'] ? $value['search_path'] : $value['database'];
+                    $schema = $value['search_path'] ?? $value['database'];
 
-                    $tables = collect($databaseSchemaBuilder->getTables($value['database']))
+                    $tables = collect($databaseSchemaBuilder->getTables($schema))
                         ->pluck('name')
                         ->map(fn($name) => Str::replaceStart(data_get($value, 'prefix', ''), '', $name))
                         ->toArray();
@@ -129,12 +127,10 @@ class Generator
         return collect($data);
     }
 
-    public function getDatabasePrimaryKeys($db = null, $tb = null)
+    public function getDatabasePrimaryKeys($db = null, $table = null)
     {
-        $databases = Arr::where(config('database.connections', []), function ($value) {
-            $supports[] = env('DB_CONNECTION', 'mysql');
-
-            return in_array(strtolower(Arr::get($value, 'driver')), $supports);
+        $databases = Arr::where(config('database.connections', []), function ($value, $key) {
+            return $key == config('database.default');
         });
 
         $data = [];
@@ -143,37 +139,60 @@ class Generator
             foreach ($databases as $connectName => $value) {
                 if ($db && $db != $value['database']) continue;
 
-                $sql = sprintf('SELECT * FROM information_schema.columns WHERE table_schema = "%s"',
-                    $value['database']);
+                $schema = $value['search_path'] ?? $value['database'];
+                $sql = sprintf("SELECT * FROM information_schema.columns WHERE 1=1", $schema);
 
-                if ($tb) {
-                    $p = Arr::get($value, 'prefix');
+                $bool = $value['search_path'] ?? false; //判断pgsql模式
 
-                    $sql .= " AND TABLE_NAME = '{$p}{$tb}'";
+                if($bool) { // pgsql模式
+                    $sql .= sprintf(" AND table_catalog = '%s'", $value['database']);
                 }
 
-                $tmp = DB::connection($connectName)->select($sql);
+                $sql .= sprintf(" AND table_schema = '%s'", $schema);
 
-                $collection = collect($tmp)->map(function ($v) use ($value) {
-                    if (!$p = Arr::get($value, 'prefix')) {
-                        return (array)$v;
+                if ($table) {
+                    if($prefix = Arr::get($value, 'prefix')){
+                        $table = $prefix . $table;
                     }
-                    $v = (array)$v;
+                    $sql .= sprintf(" AND table_name = '%s'", $table);
+                }
 
-                    $v['TABLE_NAME'] = Str::replaceFirst($p, '', $v['TABLE_NAME']);
+                $columns = DB::connection($connectName)->select($sql);
+
+                $collection = collect($columns)->map(function ($v) use ($value) {
+                    if (!$prefix = Arr::get($value, 'prefix')) {
+                        return (array) $v;
+                    }
+                    $v = (array) $v;
+
+                    $v['table_name'] = Str::replaceFirst($prefix, '', $v['table_name']);
 
                     return $v;
                 });
 
-                $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
-                    return collect($v)
-                        ->keyBy('COLUMN_NAME')
-                        ->where('COLUMN_KEY', 'PRI')
-                        ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
-                        ->map(fn($v) => $v['COLUMN_NAME'])
-                        ->values()
-                        ->first();
-                });
+                if ($bool) { //判断pgsql模式
+                    $data[$value['database']] = $collection->groupBy('table_name')->map(function ($v) {
+                        return collect($v)
+                            ->keyBy('column_name')
+                            ->filter(function ($v) {
+                                return strpos($v['column_default'], 'nextval') !== false;
+                            })
+                            ->whereNotIn('column_name', ['created_at', 'updated_at', 'deleted_at'])
+                            ->map(fn($v) => $v['column_name'])
+                            ->values()
+                            ->first();
+                    });
+                } else {
+                    $data[$value['database']] = $collection->groupBy('TABLE_NAME')->map(function ($v) {
+                        return collect($v)
+                            ->keyBy('COLUMN_NAME')
+                            ->where('COLUMN_KEY', 'PRI')
+                            ->whereNotIn('COLUMN_NAME', ['created_at', 'updated_at', 'deleted_at'])
+                            ->map(fn($v) => $v['COLUMN_NAME'])
+                            ->values()
+                            ->first();
+                    });
+                }
             }
         } catch (\Throwable $e) {
         }
