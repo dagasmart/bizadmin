@@ -84,7 +84,7 @@ _初始账号密码都是 `admin`_
 
 ## 创建模块
 
-这个命令会创建 `多应用模块` 所需的文件和目录, 以及相关的数据库及基础数据
+这个命令会创建 `owl-admin` 所需的文件和目录, 以及相关的数据库及基础数据
 建议首字母大写, 使用大驼峰格式
 
 ```bash
@@ -112,12 +112,10 @@ php artisan admin-module:init <module-name>
 配置模块目录(modules)自动加载
 
 ```json
-{
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Modules\\": "modules/"
-        }
+"autoload": {
+    "psr-4": {
+        "App\\": "app/",
+        "Modules\\": "modules/"
     }
 }
 ```

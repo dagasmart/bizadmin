@@ -438,15 +438,12 @@ class Database
         $adminPermission->truncate();
         $adminPermission->insert([
             $data(['name' => '首页', 'slug' => 'home', 'http_path' => ['/home*'], "parent_id" => 0]),
-            $data(['name' => '基础维护', 'slug' => 'basic', 'http_path' => '', "parent_id" => 0]),
-            $data(['name' => '数据字典', 'slug' => 'dict', 'http_path' => ["/dict*"], "parent_id" => 2]),
-            $data(['name' => '地区管理', 'slug' => 'region', 'http_path' => ["/region*"], "parent_id" => 2]),
             $data(['name' => '系统管理', 'slug' => 'system', 'http_path' => '', "parent_id" => 0]),
-            $data(['name' => '管理员', 'slug' => 'admin_users', 'http_path' => ["/admin_users*"], "parent_id" => 3]),
-            $data(['name' => '角色', 'slug' => 'roles', 'http_path' => ["/roles*"], "parent_id" => 3]),
-            $data(['name' => '权限', 'slug' => 'permissions', 'http_path' => ["/permissions*"], "parent_id" => 3]),
-            $data(['name' => '菜单', 'slug' => 'menus', 'http_path' => ["/menus*"], "parent_id" => 3]),
-            $data(['name' => '设置', 'slug' => 'settings', 'http_path' => ["/settings*"], "parent_id" => 3]),
+            $data(['name' => '管理员', 'slug' => 'admin_users', 'http_path' => ["/admin_users*"], "parent_id" => 2]),
+            $data(['name' => '角色', 'slug' => 'roles', 'http_path' => ["/roles*"], "parent_id" => 2]),
+            $data(['name' => '权限', 'slug' => 'permissions', 'http_path' => ["/permissions*"], "parent_id" => 2]),
+            $data(['name' => '菜单', 'slug' => 'menus', 'http_path' => ["/menus*"], "parent_id" => 2]),
+            $data(['name' => '设置', 'slug' => 'settings', 'http_path' => ["/settings*"], "parent_id" => 2]),
             $data(['name' => '软件', 'slug' => 'soft', 'http_path' => ["/soft*"], "parent_id" => 0]),
             $data(['name' => '消息', 'slug' => 'message', 'http_path' => ["/message*"], "parent_id" => 0]),
         ]);
@@ -515,27 +512,6 @@ class Database
             ]),
             $data([
                 'parent_id' => 0,
-                'title'     => 'admin_basic',
-                'icon'      => 'lets-icons:setting-alt-line-light',
-                'url'       => '/basic',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 8,
-                'title'     => 'admin_dict',
-                'icon'      => 'streamline:dictionary-language-book',
-                'url'       => '/basic/dict',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 8,
-                'title'     => 'admin_region',
-                'icon'      => 'healthicons:city',
-                'url'       => '/basic/region',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 0,
                 'title'     => 'system_soft',
                 'icon'      => 'mdi:microsoft-windows',
                 'url'       => '/system/soft',
@@ -550,8 +526,9 @@ class Database
             ]),
         ]);
 
-        // 非模块追加[商户]菜单和权限
+        //非模块追加菜单和权限
         if (!$this->moduleName) {
+            //追加菜单项
             $adminMenu->insert([
                 $data([
                     'parent_id' => 0,
@@ -561,14 +538,47 @@ class Database
                     'is_home'   => 0,
                 ])
             ]);
-            $adminPermission->insert([
+            //[基础数据]菜单父级id
+            $id = $adminMenu->insertGetId([
                 $data([
-                    'name' => '商户',
-                    'slug' => 'merchant',
-                    'http_path' => ["/merchant*"],
-                    "parent_id" => 0
-                ]),
+                    'parent_id' => 0,
+                    'title'     => 'admin_basic',
+                    'icon'      => 'lets-icons:setting-alt-line-light',
+                    'url'       => '/basic',
+                    'is_home'   => 0,
+                ])
             ]);
+            $adminMenu->insert([
+                $data([
+                    'parent_id' => $id,
+                    'title'     => 'admin_dict',
+                    'icon'      => 'streamline:dictionary-language-book',
+                    'url'       => '/basic/dict',
+                    'is_home'   => 0,
+                ]),
+                $data([
+                    'parent_id' => $id,
+                    'title'     => 'admin_region',
+                    'icon'      => 'healthicons:city',
+                    'url'       => '/basic/region',
+                    'is_home'   => 0,
+                ])
+            ]);
+
+
+            //追加权限项
+            $adminPermission->insert([
+                $data(['name' => '商户', 'slug' => 'merchant', 'http_path' => ["/merchant*"], "parent_id" => 0]),
+            ]);
+            //[基础数据]权限父级id
+            $id = $adminPermission->insertGetId([
+                $data(['name' => '基础数据', 'slug' => 'basic', 'http_path' => '', "parent_id" => 0])
+            ]);
+            $adminPermission->insert([
+                $data(['name' => '数据字典', 'slug' => 'dict', 'http_path' => ["/dict*"], "parent_id" => $id]),
+                $data(['name' => '地区管理', 'slug' => 'region', 'http_path' => ["/region*"], "parent_id" => $id]),
+            ]);
+
         }
 
         // 权限 - 菜单绑定
