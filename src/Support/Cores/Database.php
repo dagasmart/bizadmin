@@ -28,7 +28,7 @@ class Database
 
     public function create($tableName, $callback)
     {
-        if (!Schema::hasTable($tableName)) {
+        if (!Schema::hasTable($this->moduleName . $tableName)) {
             Schema::create($this->tableName($tableName), $callback);
         }
     }
@@ -438,7 +438,7 @@ class Database
         $adminPermission->truncate();
         $adminPermission->insert([
             $data(['name' => '首页', 'slug' => 'home', 'http_path' => ['/home*'], "parent_id" => 0]),
-            $data(['name' => '基本设置', 'slug' => 'basic', 'http_path' => '', "parent_id" => 0]),
+            $data(['name' => '基础维护', 'slug' => 'basic', 'http_path' => '', "parent_id" => 0]),
             $data(['name' => '数据字典', 'slug' => 'dict', 'http_path' => ["/dict*"], "parent_id" => 2]),
             $data(['name' => '地区管理', 'slug' => 'region', 'http_path' => ["/region*"], "parent_id" => 2]),
             $data(['name' => '系统管理', 'slug' => 'system', 'http_path' => '', "parent_id" => 0]),
@@ -473,65 +473,65 @@ class Database
             ]),
             $data([
                 'parent_id' => 0,
-                'title'     => 'admin_basic',
-                'icon'      => 'lets-icons:setting-alt-line-light',
-                'url'       => '/basic',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 2,
-                'title'     => 'admin_dict',
-                'icon'      => 'streamline:dictionary-language-book',
-                'url'       => '/basic/dict',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 2,
-                'title'     => 'admin_region',
-                'icon'      => 'healthicons:city',
-                'url'       => '/basic/region',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 0,
                 'title'     => 'admin_system',
                 'icon'      => 'material-symbols:settings-outline',
                 'url'       => '/system',
                 'is_home'   => 0,
             ]),
             $data([
-                'parent_id' => 3,
+                'parent_id' => 2,
                 'title'     => 'admin_users',
                 'icon'      => 'ph:user-gear',
                 'url'       => '/system/admin_users',
                 'is_home'   => 0,
             ]),
             $data([
-                'parent_id' => 3,
+                'parent_id' => 2,
                 'title'     => 'admin_roles',
                 'icon'      => 'carbon:user-role',
                 'url'       => '/system/admin_roles',
                 'is_home'   => 0,
             ]),
             $data([
-                'parent_id' => 3,
+                'parent_id' => 2,
                 'title'     => 'admin_permission',
                 'icon'      => 'fluent-mdl2:permissions',
                 'url'       => '/system/admin_permissions',
                 'is_home'   => 0,
             ]),
             $data([
-                'parent_id' => 3,
+                'parent_id' => 2,
                 'title'     => 'admin_menu',
                 'icon'      => 'ant-design:menu-unfold-outlined',
                 'url'       => '/system/admin_menus',
                 'is_home'   => 0,
             ]),
             $data([
-                'parent_id' => 3,
+                'parent_id' => 2,
                 'title'     => 'admin_setting',
                 'icon'      => 'akar-icons:settings-horizontal',
                 'url'       => '/system/settings',
+                'is_home'   => 0,
+            ]),
+            $data([
+                'parent_id' => 0,
+                'title'     => 'admin_basic',
+                'icon'      => 'lets-icons:setting-alt-line-light',
+                'url'       => '/basic',
+                'is_home'   => 0,
+            ]),
+            $data([
+                'parent_id' => 8,
+                'title'     => 'admin_dict',
+                'icon'      => 'streamline:dictionary-language-book',
+                'url'       => '/basic/dict',
+                'is_home'   => 0,
+            ]),
+            $data([
+                'parent_id' => 8,
+                'title'     => 'admin_region',
+                'icon'      => 'healthicons:city',
+                'url'       => '/basic/region',
                 'is_home'   => 0,
             ]),
             $data([

@@ -32,7 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "DagaSmart\\BizAdmin\\": "src/"
+            "DagaSmart\\BizAdmin\\": "src/",
+            "Modules\\": "modules/"
         },
         "files": [
             "src/Support/helpers.php"
