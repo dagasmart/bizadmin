@@ -238,7 +238,7 @@ class ExtensionController extends AdminController
     public function moreExtend()
     {
         return amis()->UrlAction()
-            ->url('https://bizadmin.com/ext')
+            ->url('https://biz.dagasmart.com/ext')
             ->label(admin_trans('admin.extensions.more_extensions'))
             ->icon('fa-regular fa-lightbulb')
             ->level('success')
