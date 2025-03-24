@@ -145,10 +145,12 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
-        /*========================业务数据库==================================*/
+
+
+        /*========================bus业务数据库==================================*/
 
         //连接外部pgsql业务库
-        'pgbus' => [
+        'bus' => [
             'driver' => env('DB_CONNECTION_BUS', 'pgsql'),
             //读
             'read' => [
@@ -167,47 +169,51 @@ return [
                 'connect_timeout' => 5, // 设置连接超时时间为5秒
             ],
             'sticky' => true, //读写一致性请求
-
             'port' => env('DB_PORT_BUS', '5432'),
             'database' => env('DB_DATABASE_BUS', 'laravel'),
-            'username' => env('DB_USERNAME_BUS', 'root'),
-            'password' => env('DB_PASSWORD_BUS', ''),
-            'charset' => env('DB_CHARSET_BUS', 'utf8mb4'),
+            'username' => env('DB_USERNAME_BUS', 'postgres'),
+            'password' => env('DB_PASSWORD_BUS', '123456'),
+            'charset' => env('DB_CHARSET_BUS', 'utf8'),
             'engine' => env('DB_ENGINE_BUS', 'InnoDB'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => env('DB_SEARCH_BUS'),
+            'search_path' => env('DB_SEARCH_BUS','public'),
             'sslmode' => 'prefer',
         ],
 
+
         //连接外部mysql业务库
-        'mybus' => [
-            'driver' => env('DB_CONNECTION_BUS', 'mysql'),
+        'biz' => [
+            'driver' => env('DB_CONNECTION_BIZ', 'mysql'),
             //读
             'read' => [
-                'host' => explode(',', env('DB_READ_HOST_BUS', 'localhost')),
+                'host' => explode(',', env('DB_READ_HOST_BIZ', 'localhost')),
             ],
             //写
             'write' => [
-                'host' => explode(',', env('DB_HOST_BUS', 'localhost')),
+                'host' => explode(',', env('DB_HOST_BIZ', 'localhost')),
             ],
             'sticky' => true, //读写一致性请求
-
-            'port' => env('DB_PORT_BUS', '3306'),
-            'database' => env('DB_DATABASE_BUS', 'laravel'),
-            'username' => env('DB_USERNAME_BUS', 'root'),
-            'password' => env('DB_PASSWORD_BUS', ''),
-            'unix_socket' => env('DB_SOCKET_BUS', ''),
-            'charset' => env('DB_CHARSET_BUS', 'utf8mb4'),
-            'collation' => env('DB_COLLATION_BUS', 'utf8mb4_0900_ai_ci'),
+            'port' => env('DB_PORT_BIZ', '3306'),
+            'database' => env('DB_DATABASE_BIZ', 'laravel'),
+            'username' => env('DB_USERNAME_BIZ', 'root'),
+            'password' => env('DB_PASSWORD_BIZ', '123456'),
+            'unix_socket' => env('DB_SOCKET_BIZ', ''),
+            'charset' => env('DB_CHARSET_BIZ', 'utf8mb4'),
+            'collation' => env('DB_COLLATION_BIZ', 'utf8mb4_0900_ai_ci'),
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
-            'engine' => env('DB_ENGINE_BUS', 'InnoDB'),
+            'engine' => env('DB_ENGINE_BIZ', 'InnoDB'),
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA',null),
             ]) : [],
         ],
+
+
+
+
+
 
     ],
 
