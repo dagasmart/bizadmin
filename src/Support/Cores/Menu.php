@@ -165,19 +165,8 @@ class Menu
             ];
         }
 
-        if (!Admin::currentModule(true) && Admin::config('admin.show_development_tools')) {
-
-            $user = Admin::user();
-
-            $isAdministrator = $user->isAdministrator();
-
-            $slug = array_column($user->roles->toArray(), 'slug'); //角色集合
-            $isDeveloper = $slug && in_array('develop', $slug); //是否开发者
-
-            if ($isAdministrator || $isDeveloper) {
-                $extraMenus = array_merge($extraMenus, $this->devToolMenus());
-            }
-
+        if (Admin::config('admin.show_development_tools')) {
+            $extraMenus = array_merge($extraMenus, $this->devToolMenus());
         }
 
         return $extraMenus;

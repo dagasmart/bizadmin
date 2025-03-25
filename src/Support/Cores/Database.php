@@ -28,9 +28,7 @@ class Database
 
     public function create($tableName, $callback)
     {
-        if (!Schema::hasTable($this->moduleName . $tableName)) {
-            Schema::create($this->tableName($tableName), $callback);
-        }
+        Schema::create($this->tableName($tableName), $callback);
     }
 
     public function dropIfExists($tableName)
@@ -47,60 +45,38 @@ class Database
     public function up()
     {
         $this->create('admin_users', function (Blueprint $table) {
-            $table->comment('系统-管理员表');
             $table->id();
-            $table->string('username', 120)->unique()->comment('用户名');
-            $table->string('password', 80)->comment('密码');
-            $table->tinyInteger('enabled')->default(1)->comment('是否启用');
-            $table->string('name')->default('')->comment('姓名');
-            $table->string('avatar')->nullable()->comment('头像');
-            $table->string('remember_token', 100)->nullable()->comment('Token');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['username', 'mer_id']);
-                $table->index(['mer_id']);
-            }
-            $table->index(['id']);
+            $table->string('username', 120)->unique();
+            $table->string('password', 80);
+            $table->tinyInteger('enabled')->default(1);
+            $table->string('name')->default('');
+            $table->string('avatar')->nullable();
+            $table->string('remember_token', 100)->nullable();
             $table->timestamps();
         });
 
         $this->create('admin_roles', function (Blueprint $table) {
-            $table->comment('系统-角色表');
             $table->id();
-            $table->string('name', 50)->unique()->comment('名称');
-            $table->string('slug', 50)->unique()->comment('标识');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['slug', 'mer_id']);
-                $table->index(['mer_id']);
-            }
-            $table->index(['id']);
+            $table->string('name', 50)->unique();
+            $table->string('slug', 50)->unique();
             $table->timestamps();
         });
 
         $this->create('admin_permissions', function (Blueprint $table) {
-            $table->comment('系统-权限表');
             $table->id();
-            $table->string('name', 50)->unique()->comment('名称');
-            $table->string('slug', 50)->unique()->comment('标识');
-            $table->text('http_method')->nullable()->comment('请求方式');
-            $table->text('http_path')->nullable()->comment('路由');
-            $table->integer('custom_order')->default(0)->comment('排序[0-255]');
-            $table->integer('parent_id')->default(0)->comment('父级ID');
-            $table->integer('is_customize')->default(0)->comment('是否自定义');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['slug', 'mer_id']);
-                $table->index(['mer_id']);
-            }
+            $table->string('name', 50)->unique();
+            $table->string('slug', 50)->unique();
+            $table->text('http_method')->nullable();
+            $table->text('http_path')->nullable();
+            $table->integer('custom_order')->default(0);
+            $table->integer('parent_id')->default(0);
             $table->timestamps();
         });
 
         $this->create('admin_menus', function (Blueprint $table) {
-            $table->comment('系统-菜单表');
             $table->id();
-            $table->integer('parent_id')->default(0)->comment('父级ID');
-            $table->integer('custom_order')->default(10)->comment('排序[0-255]');
+            $table->integer('parent_id')->default(0);
+            $table->integer('custom_order')->default(0);
             $table->string('title', 100)->comment('菜单名称');
             $table->string('icon', 100)->nullable()->comment('菜单图标');
             $table->string('url')->nullable()->comment('菜单路由');
@@ -112,52 +88,27 @@ class Database
             $table->string('component')->nullable()->comment('菜单组件');
             $table->tinyInteger('is_full')->default(0)->comment('是否是完整页面');
             $table->string('extension')->nullable()->comment('扩展');
-            $table->string('is_publicly')->default(1)->comment('开放方式(0私有,1公开)');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['url', 'mer_id']);
-                $table->index(['mer_id']);
-            }
+
             $table->timestamps();
         });
 
         $this->create('admin_role_users', function (Blueprint $table) {
-            $table->comment('系统-角色与管理员关联表');
-            $table->integer('role_id')->comment('角色ID');
-            $table->integer('user_id')->comment('管理员ID');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['role_id', 'user_id', 'mer_id']);
-                $table->index(['mer_id']);
-            }
+            $table->integer('role_id');
+            $table->integer('user_id');
             $table->index(['role_id', 'user_id']);
             $table->timestamps();
         });
 
         $this->create('admin_role_permissions', function (Blueprint $table) {
-            $table->comment('系统-角色与权限关联表');
-            $table->integer('role_id')->comment('角色ID');
-            $table->integer('permission_id')->comment('权限ID');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                //$table->unique(['role_id', 'permission_id', 'mer_id']);
-                $table->index(['mer_id']);
-            } else {
-                $table->unique(['role_id', 'permission_id']);
-            }
+            $table->integer('role_id');
+            $table->integer('permission_id');
             $table->index(['role_id', 'permission_id']);
             $table->timestamps();
         });
 
         $this->create('admin_permission_menu', function (Blueprint $table) {
-            $table->comment('系统-权限与菜单关联表');
-            $table->integer('permission_id')->comment('权限ID');
-            $table->integer('menu_id')->comment('菜单ID');
-            if ($this->moduleName) {
-                $table->biginteger('mer_id')->default(0)->comment('商户id');
-                $table->unique(['permission_id', 'menu_id', 'mer_id']);
-                $table->index(['mer_id']);
-            }
+            $table->integer('permission_id');
+            $table->integer('menu_id');
             $table->index(['permission_id', 'menu_id']);
             $table->timestamps();
         });
@@ -167,21 +118,7 @@ class Database
             return;
         }
 
-        $this->create('admin_extensions', function (Blueprint $table) {
-            $table->comment('系统-扩展插件表');
-            $table->id();
-            $table->string('name', 100)->comment('名称');
-            $table->string('code', 100)->comment('标识');
-            $table->tinyInteger('is_enabled')->default(0)->comment('是否启用');
-            $table->string('module')->nullable()->comment('模块');
-            $table->biginteger('mer_id')->index()->default(0)->comment('商户id');
-            $table->unique(['code', 'module', 'mer_id']);
-            $table->index(['code', 'module', 'mer_id']);
-            $table->timestamps();
-        });
-
         $this->create('admin_code_generators', function (Blueprint $table) {
-            $table->comment('系统-代码生成器表');
             $table->id();
             $table->string('title')->default('')->comment('名称');
             $table->string('table_name')->default('')->comment('表名');
@@ -195,33 +132,31 @@ class Database
             $table->text('needs')->nullable()->comment('需要生成的代码');
             $table->text('menu_info')->nullable()->comment('菜单信息');
             $table->text('page_info')->nullable()->comment('页面信息');
-            $table->text('save_path')->nullable()->comment('保存位置');
-            $table->string('module')->nullable()->comment('模块');
             $table->timestamps();
         });
 
         $this->create('admin_settings', function (Blueprint $table) {
-            $table->comment('系统-全局设置表');
-            $table->string('key')->default('')->comment('标识名');
-            $table->longText('values')->nullable()->comment('对象值');
-            $table->string('module')->nullable()->comment('模块');
+            $table->string('key')->default('');
+            $table->longText('values')->nullable();
             $table->timestamps();
         });
 
-
+        $this->create('admin_extensions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->unique();
+            $table->tinyInteger('is_enabled')->default(0);
+            $table->timestamps();
+        });
 
         $this->create('admin_pages', function (Blueprint $table) {
-            $table->comment('系统-页面管理表');
             $table->id();
             $table->string('title')->comment('页面名称');
             $table->string('sign')->comment('页面标识');
             $table->longText('schema')->comment('页面结构');
-            $table->string('module')->nullable()->comment('模块');
             $table->timestamps();
         });
 
         $this->create('admin_relationships', function (Blueprint $table) {
-            $table->comment('系统-动态关联表');
             $table->id();
             $table->string('model')->comment('模型');
             $table->string('title')->comment('关联名称');
@@ -229,135 +164,18 @@ class Database
             $table->string('remark')->comment('关联名称')->nullable();
             $table->text('args')->comment('关联参数')->nullable();
             $table->text('extra')->comment('额外参数')->nullable();
-            $table->string('module')->nullable()->comment('模块');
             $table->timestamps();
         });
 
         $this->create('admin_apis', function (Blueprint $table) {
-            $table->comment('系统-动态Api表');
             $table->id();
             $table->string('title')->comment('接口名称');
             $table->string('path')->comment('接口路径');
             $table->string('template')->comment('接口模板');
             $table->tinyInteger('enabled')->default(1)->comment('是否启用');
             $table->longText('args')->comment('接口参数')->nullable();
-            $table->tinyInteger('is_login')->default(1)->comment('登录鉴权');
-            $table->string('module')->nullable()->comment('模块');
             $table->timestamps();
         });
-
-        $this->create('system_soft', function (Blueprint $table) {
-            $table->comment('软件商店表');
-            $table->id();
-            $table->string('soft_name',50)->comment('软件名称');
-            $table->string('soft_code',50)->comment('软件标识');
-            $table->string('soft_icon')->nullable()->comment('软件图标');
-            $table->tinyInteger('soft_images')->default(0)->comment('软件组图');
-            $table->tinyInteger('soft_type')->default(0)->comment('软件分类');
-            $table->string('soft_desc')->nullable()->comment('软件描述');
-            $table->tinyInteger('soft_authorize')->default(0)->comment('授权方式：1免费，2付费，3兑换');
-            $table->float('soft_price')->nullable()->comment('金额或积分');
-            $table->integer('soft_status')->nullable()->comment('状态：0待审核，1受理中，2上线交易，-1下线维护');
-            $table->string('soft_dirname')->nullable()->comment('目录名');
-            $table->string('soft_zip')->nullable()->comment('压缩包');
-            $table->smallInteger('soft_develop_id')->nullable()->comment('开发者id');
-            $table->string('soft_develop_as',50)->nullable()->comment('开发者');
-            $table->unique(['soft_code', 'soft_develop_id']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        $this->create('system_soft_order', function (Blueprint $table) {
-            $table->comment('软件商店订单表');
-            $table->id();
-            $table->string('soft_id')->comment('软件id');
-            $table->string('service_auth')->comment('授权方式');
-            $table->string('service_timer')->nullable()->comment('使用时长/年');
-            $table->tinyInteger('service_endate')->default(0)->comment('有效期限，默认0无限制');
-            $table->tinyInteger('service_price')->default(0)->comment('支付单价');
-            $table->string('pay_type')->nullable()->comment('支付方式');
-            $table->tinyInteger('pay_amount')->default(0)->comment('支付总额');
-            $table->float('order_no')->nullable()->comment('订单号');
-            $table->integer('pay_status')->nullable()->comment('支付状态');
-            $table->string('pay_no')->nullable()->comment('支付单号');
-            $table->string('pay_time')->nullable()->comment('支付时间');
-            $table->string('pay_desc')->nullable()->comment('支付描述');
-            $table->string('payer_id')->nullable()->comment('支付人id ');
-            $table->string('payer_as')->nullable()->comment('支付人');
-            $table->string('module')->nullable()->comment('模块');
-            $table->biginteger('mer_id')->default(0)->comment('商户id');
-            $table->index(['soft_id', 'module', 'mer_id']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        $this->create('system_message', function (Blueprint $table) {
-            $table->comment('系统消息表');
-            $table->id();
-            $table->tinyInteger('from_uid')->comment('发件人id');
-            $table->string('from_name',50)->comment('发送人');
-            $table->string('title',100)->comment('标题');
-            $table->text('body')->nullable()->comment('内容');
-            $table->string('type',20)->default('private')->comment('类型：private私信、system系统、group群组、department部门、region地区');
-            $table->string('to_ids')->nullable()->comment('收件方id');
-            $table->string('to_names')->nullable()->comment('收件方');
-            $table->string('module',50)->nullable()->comment('模块');
-            $table->biginteger('mer_id')->default(0)->comment('商户id');
-            $table->unique(['from_uid', 'title', 'module', 'mer_id']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        $this->create('system_message_log', function (Blueprint $table) {
-            $table->comment('消息日志表');
-            $table->id();
-            $table->integer('msg_id')->comment('消息id');
-            $table->integer('to_uid')->comment('接收人id');
-            $table->string('to_name',50)->comment('接收人id');
-            $table->string('state')->default(1)->comment('状态：1已读,2已回复');
-            $table->text('reply')->nullable()->comment('回复');
-            $table->string('module',50)->nullable()->comment('模块');
-            $table->biginteger('mer_id')->default(0)->comment('商户id');
-            $table->index(['msg_id', 'to_uid', 'module', 'mer_id']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        $this->create('system_merchant', function (Blueprint $table) {
-            $table->comment('商户表');
-            $table->id();
-            $table->string('username')->comment('用户名');
-            $table->string('realname')->comment('商户姓名');
-            $table->string('mobile')->nullable()->comment('手机号');
-            $table->tinyInteger('is_mobile')->default(0)->comment('手机可用');
-            $table->tinyInteger('is_mobile_wechat')->default(0)->comment('微信同号');
-            $table->string('email')->nullable()->comment('电子邮件');
-            $table->tinyInteger('is_email')->default(0)->comment('邮箱可用');
-            $table->string('id_card',18)->nullable()->comment('身份证号');
-            $table->integer('city_id')->nullable()->comment('城市ID');
-            $table->string('address')->nullable()->comment('联系地址');
-            $table->string('linkman',50)->nullable()->comment('联系人');
-            $table->tinyInteger('audit_status')->default(0)->comment('审核状态');
-            $table->string('audit_desc')->nullable()->comment('审核结果');
-            $table->string('auditor',50)->nullable()->comment('审核人');
-            $table->tinyInteger('state')->default(0)->comment('状态');
-            $table->index(['username', 'mobile', 'auditor']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
-        $this->create('system_merchant_log', function (Blueprint $table) {
-            $table->comment('商户记录表');
-            $table->id();
-            $table->bigInteger('mer_id')->comment('商户id');
-            $table->tinyInteger('oper_status')->comment('操作状态');
-            $table->string('oper_desc')->nullable()->comment('操作结果');
-            $table->tinyInteger('oper_as')->default(0)->comment('操作人');
-            $table->index(['mer_id']);
-            $table->timestamps();
-            $table->softDeletes();
-        });
-
     }
 
     public function down()
@@ -375,18 +193,12 @@ class Database
             return;
         }
 
-        $this->dropIfExists('admin_code_generators');//代码生器
-        $this->dropIfExists('admin_settings');//设置
-        $this->dropIfExists('admin_pages');//页面管理
-        $this->dropIfExists('admin_relationships');//动态关联
-        $this->dropIfExists('admin_apis');//动态api
-        $this->dropIfExists('system_soft');//软件
-        $this->dropIfExists('system_soft_order');//软件订单
-        $this->dropIfExists('system_message');//消息
-        $this->dropIfExists('system_message_log');//消息日志
-        $this->dropIfExists('system_merchant');//商户
-        $this->dropIfExists('system_merchant_log');//商户日志
-		$this->dropIfExists('admin_extensions');//扩展插件
+        $this->dropIfExists('admin_code_generators');
+        $this->dropIfExists('admin_settings');
+        $this->dropIfExists('admin_extensions');
+        $this->dropIfExists('admin_pages');
+        $this->dropIfExists('admin_relationships');
+        $this->dropIfExists('admin_apis');
     }
 
     /**
@@ -438,14 +250,12 @@ class Database
         $adminPermission->truncate();
         $adminPermission->insert([
             $data(['name' => '首页', 'slug' => 'home', 'http_path' => ['/home*'], "parent_id" => 0]),
-            $data(['name' => '系统管理', 'slug' => 'system', 'http_path' => '', "parent_id" => 0]),
+            $data(['name' => '系统', 'slug' => 'system', 'http_path' => '', "parent_id" => 0]),
             $data(['name' => '管理员', 'slug' => 'admin_users', 'http_path' => ["/admin_users*"], "parent_id" => 2]),
             $data(['name' => '角色', 'slug' => 'roles', 'http_path' => ["/roles*"], "parent_id" => 2]),
             $data(['name' => '权限', 'slug' => 'permissions', 'http_path' => ["/permissions*"], "parent_id" => 2]),
             $data(['name' => '菜单', 'slug' => 'menus', 'http_path' => ["/menus*"], "parent_id" => 2]),
             $data(['name' => '设置', 'slug' => 'settings', 'http_path' => ["/settings*"], "parent_id" => 2]),
-            $data(['name' => '软件', 'slug' => 'soft', 'http_path' => ["/soft*"], "parent_id" => 0]),
-            $data(['name' => '消息', 'slug' => 'message', 'http_path' => ["/message*"], "parent_id" => 0]),
         ]);
 
         // 角色 - 权限绑定
@@ -510,76 +320,7 @@ class Database
                 'url'       => '/system/settings',
                 'is_home'   => 0,
             ]),
-            $data([
-                'parent_id' => 0,
-                'title'     => 'system_soft',
-                'icon'      => 'mdi:microsoft-windows',
-                'url'       => '/system/soft',
-                'is_home'   => 0,
-            ]),
-            $data([
-                'parent_id' => 0,
-                'title'     => 'system_message',
-                'icon'      => 'fluent:person-chat-20-regular',
-                'url'       => '/system/message',
-                'is_home'   => 0,
-            ]),
         ]);
-
-        //非模块追加菜单和权限
-        if (!$this->moduleName) {
-            //追加菜单项
-            $adminMenu->insert([
-                $data([
-                    'parent_id' => 0,
-                    'title'     => 'system_merchant',
-                    'icon'      => 'heroicons:user-20-solid',
-                    'url'       => '/system/merchant',
-                    'is_home'   => 0,
-                ])
-            ]);
-            //[基础数据]菜单父级id
-            $id = $adminMenu->insertGetId([
-                $data([
-                    'parent_id' => 0,
-                    'title'     => 'admin_basic',
-                    'icon'      => 'lets-icons:setting-alt-line-light',
-                    'url'       => '/basic',
-                    'is_home'   => 0,
-                ])
-            ]);
-            $adminMenu->insert([
-                $data([
-                    'parent_id' => $id,
-                    'title'     => 'admin_dict',
-                    'icon'      => 'streamline:dictionary-language-book',
-                    'url'       => '/basic/dict',
-                    'is_home'   => 0,
-                ]),
-                $data([
-                    'parent_id' => $id,
-                    'title'     => 'admin_region',
-                    'icon'      => 'healthicons:city',
-                    'url'       => '/basic/region',
-                    'is_home'   => 0,
-                ])
-            ]);
-
-
-            //追加权限项
-            $adminPermission->insert([
-                $data(['name' => '商户', 'slug' => 'merchant', 'http_path' => ["/merchant*"], "parent_id" => 0]),
-            ]);
-            //[基础数据]权限父级id
-            $id = $adminPermission->insertGetId([
-                $data(['name' => '基础数据', 'slug' => 'basic', 'http_path' => '', "parent_id" => 0])
-            ]);
-            $adminPermission->insert([
-                $data(['name' => '数据字典', 'slug' => 'dict', 'http_path' => ["/dict*"], "parent_id" => $id]),
-                $data(['name' => '地区管理', 'slug' => 'region', 'http_path' => ["/region*"], "parent_id" => $id]),
-            ]);
-
-        }
 
         // 权限 - 菜单绑定
         DB::table($this->tableName('admin_permission_menu'))->truncate();
@@ -602,13 +343,8 @@ class Database
         $this->fillCodeGeneratorFields();
     }
 
-    /**
-     * 多库时用：Schema::getCurrentSchemaListing()
-     * @return array|mixed[]
-     */
     public static function getTables()
     {
-
         try {
             return collect(json_decode(json_encode(Schema::getAllTables()), true))
                 ->map(fn($i) => config('database.default') == 'sqlite' ? $i['name'] : array_shift($i))
@@ -617,7 +353,7 @@ class Database
         }
 
         // laravel 11+
-        return array_column(Schema::getTables(Schema::getCurrentSchemaName()), 'name');
+        return array_column(Schema::getTables(), 'name');
     }
 
     /**

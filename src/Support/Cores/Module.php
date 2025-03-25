@@ -13,8 +13,8 @@ class Module
 
     public function __construct()
     {
-        $this->namespace = config('admin.modules_namespace', 'Modules');
-        $this->dir       = config('admin.modules_dir', 'modules');
+        $this->namespace = config('admin.modules_namespace', 'AdminModules');
+        $this->dir       = config('admin.modules_dir', 'admin-modules');
     }
 
     /**

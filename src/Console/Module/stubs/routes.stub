@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{{module}}', fn() => \DagaSmart\BizAdmin\Admin::view(config('{{module}}.admin.route.prefix')));
 
-//需登录与鉴权
 Route::group([
     'as'         => '{{module}}',
     'domain'     => config('{{module}}.admin.route.domain'),
@@ -14,14 +13,4 @@ Route::group([
 ], function (Router $router) {
     $router->resource('dashboard', \{{Namespace}}\HomeController::class);
     $router->resource('system/settings', \{{Namespace}}\SettingController::class);
-});
-
-//免登录无限制
-Route::group([
-    'as'         => '{{module}}',
-    'domain'     => config('{{module}}.admin.route.domain'),
-    'prefix'     => config('{{module}}.admin.route.prefix'),
-], function (Router $router) {
-    $router->get('_iconify_search', [\DagaSmart\BizAdmin\Controllers\IndexController::class, 'iconifySearch']);
-
 });

@@ -1,18 +1,8 @@
 <?php
 
-$modules = [];
-if (is_dir(base_path('modules'))) {
-    // 所有模块配置
-    $modules = scandir(base_path('modules'));
-    $modules = array_flip(array_filter(str_replace(['.','..'], '', $modules)));
-    array_walk($modules, function(&$value) {
-        $value = true;
-    });
-}
-
 return [
     // 应用名称
-    'name'           => env('ADMIN_APP_NAME', 'Biz Admin™'),
+    'name'           => env('ADMIN_APP_NAME', 'Owl Admin'),
 
     // 应用 logo
     'logo'           => env('ADMIN_LOGO', '/admin-assets/logo.png'),
@@ -46,7 +36,7 @@ return [
         // 是否开启鉴权
         'permission'       => env('ADMIN_ENABLE_PERMISSION', true),
         // token 有效期 (分钟), 为空则不会过期
-        'token_expiration' => env('ADMIN_TOKEN_EXPIRATION', null),
+        'token_expiration' => env('ADMIN_TOKEN_EXPIRATION'),
         'guard'            => 'admin',
         'guards'           => [
             'admin' => [
@@ -90,7 +80,7 @@ return [
 
     'layout' => [
         // 浏览器标题, 功能名称使用 %title% 代替
-        'title'              => env('ADMIN_SITE_TITLE', '%title% | BizAdmin™'),
+        'title'              => env('ADMIN_SITE_TITLE', '%title% | BizAdmin'),
         'header'             => [
             // 是否显示 [刷新] 按钮
             'refresh'       => env('ADMIN_HEADER_REFRESH', true),
@@ -119,7 +109,7 @@ return [
          */
         'keep_alive_exclude' => [],
         // 底部信息
-        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">Biz Admin™</a>',
+        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">Owl Admin</a>',
     ],
 
     'database' => [
@@ -133,9 +123,10 @@ return [
         'admin_permission' => \DagaSmart\BizAdmin\Models\AdminPermission::class,
     ],
 
-    'modules_namespace' => 'Modules',
+    'modules_namespace' => 'AdminModules',
 
-    'modules_dir' => base_path('modules'),
+    'modules_dir' => base_path('admin-modules'),
 
-    'modules' => $modules,
+    'modules' => [
+    ],
 ];
