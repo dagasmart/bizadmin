@@ -21,7 +21,7 @@ class InitCommand extends Command
         $modules = $this->checkOption();
 
         foreach ($modules as $module) {
-            $this->module = $module;
+            $this->module = ucwords($module);
 
             $this->output->title('Init Module: ' . $module);
             $this->initDB();
@@ -42,15 +42,29 @@ class InitCommand extends Command
         $modules = $this->argument('module');
 
         if (blank($modules)) {
-            $this->error('Module name is required');
+            $this->error('Module name is required (模块名必填)');
             $this->info('Usage: php artisan admin-module:init ModuleName');
-            exit;
+            die;
         }
 
+        //模块名高效去重
+        $disallow = array_flip(
+            array_flip(
+                array_merge(
+                    explode(',', env('APP_MODULE_DISALLOW')),
+                    ['admin','administrator']
+                )
+            )
+        );
+
         foreach ($modules as $module) {
+            if (in_array(Admin::module()->getLowerName($module), $disallow)) {
+                $this->error("Module [{$module}] 不允许创建");
+                die;
+            }
             if (Admin::module()->has($module)) {
-                $this->error("Module [{$module}] already exists");
-                exit;
+                $this->error("Module [{$module}] already exists（/modules/{$module}应用模块已存在）");
+                die;
             }
         }
 
@@ -69,6 +83,16 @@ class InitCommand extends Command
     protected function getLowerName()
     {
         return Admin::module()->getLowerName($this->module);
+    }
+
+
+    private function getRouteName()
+    {
+        $routeName = $this->getLowerName();
+        if (!in_array($routeName, ['api', 'apis'])) {
+            return $routeName . '-api';
+        }
+        return $routeName;
     }
 
     protected function initAdminDirectory()
@@ -180,7 +204,7 @@ class InitCommand extends Command
         $_path = str_replace(base_path(), '', $_path);
 
         $content = str_replace('{{bootstrap}}', 'base_path(\'' . $_path . '\')', $contents);
-        $content = str_replace('{{route_prefix}}', $this->getLowerName() . '-api', $content);
+        $content = str_replace('{{route_prefix}}', $this->getRouteName(), $content);
         $content = str_replace('{{module_name}}', $this->getLowerName(), $content);
         $content = str_replace('{{route_namespace}}', $this->getNamespace('Controllers'), $content);
         $content = str_replace('{{model_namespace}}', $this->getNamespace('Models'), $content);

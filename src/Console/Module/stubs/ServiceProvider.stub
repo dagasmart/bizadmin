@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminModules\{{module}};
+namespace Modules\{{module}};
 
 use Illuminate\Support\ServiceProvider;
 

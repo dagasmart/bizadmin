@@ -20,7 +20,7 @@ class AdminPermissionService extends AdminService
         $this->modelName = Admin::adminPermissionModel();
     }
 
-    public function getTree()
+    public function getTree(): array
     {
         $name = request('name');
         $slug = request('slug');
@@ -35,7 +35,7 @@ class AdminPermissionService extends AdminService
         return array2tree($list);
     }
 
-    public function parentIsChild($id, $parent_id)
+    public function parentIsChild($id, $parent_id): bool
     {
         $parent = $this->query()->find($parent_id);
 
@@ -59,7 +59,7 @@ class AdminPermissionService extends AdminService
         return $permission;
     }
 
-    public function store($data)
+    public function store($data): bool
     {
         $this->checkRepeated($data);
 
@@ -70,7 +70,7 @@ class AdminPermissionService extends AdminService
         return $this->saveData($data, $columns, $model);
     }
 
-    public function update($primaryKey, $data)
+    public function update($primaryKey, $data): bool
     {
         $this->checkRepeated($data, $primaryKey);
 
@@ -97,7 +97,7 @@ class AdminPermissionService extends AdminService
             ->exists(), admin_trans('admin.admin_permission.slug_already_exists'));
     }
 
-    public function list()
+    public function list(): array
     {
         return ['items' => $this->getTree()];
     }
@@ -109,7 +109,7 @@ class AdminPermissionService extends AdminService
      *
      * @return bool
      */
-    protected function saveData($data, array $columns, AdminPermission $model)
+    protected function saveData($data, array $columns, AdminPermission $model): bool
     {
         $menus = Arr::pull($data, 'menus');
         $data['parent_id'] = data_get($data, 'parent_id', 0) ?: 0;

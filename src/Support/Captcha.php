@@ -65,7 +65,7 @@ class Captcha
 
     private function createCode()
     {
-        $str = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHIJKMNPQRSTUVWXYZ";
+        $str = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
 
         for ($i = 0; $i < $this->codeNum; $i++) {
             $this->code .= $str[rand(0, strlen($str) - 1)];

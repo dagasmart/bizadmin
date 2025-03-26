@@ -2,7 +2,7 @@
 
 return [
     // 应用名称
-    'name'           => 'Owl Admin',
+    'name'           => '{{module_name}} Admin™',
 
     // 应用 logo
     'logo'           => '/admin-assets/logo.png',
@@ -51,14 +51,16 @@ return [
     ],
 
     'upload' => [
-        'disk'      => 'public',
+        'disk'      => env('ADMIN_UPLOAD_DISK', 'public'),
         // 文件上传目录
         'directory' => [
-            'image' => 'images',
-            'file'  => 'files',
-            'rich'  => 'rich',
+            'image' => env('ADMIN_UPLOAD_IMAGE_DIRECTORY', 'images'),
+            'file'  => env('ADMIN_UPLOAD_FILE_DIRECTORY', 'files'),
+            'rich'  => env('ADMIN_UPLOAD_RICH_DIRECTORY', 'rich'),
         ],
     ],
+
+    'https'                                => env('ADMIN_HTTPS', false),
 
     // 是否显示 [开发者工具]
     'show_development_tools'               => env('ADMIN_SHOW_DEVELOPMENT_TOOLS', true),
@@ -68,7 +70,7 @@ return [
 
     'layout' => [
         // 浏览器标题, 功能名称使用 %title% 代替
-        'title'              => '%title% | BizAdmin',
+        'title'              => '%title% | {{module_name}} Admin™',
         'header'             => [
             // 是否显示 [刷新] 按钮
             'refresh'      => true,
@@ -96,7 +98,7 @@ return [
          */
         'keep_alive_exclude' => [],
         // 底部信息
-        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">Owl Admin</a>',
+        'footer'             => '<a href="https://github.com/dagasmart/bizadmin" target="_blank">{{module_name}} Admin</a>',
     ],
 
     'models' => [

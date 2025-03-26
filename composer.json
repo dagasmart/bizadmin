@@ -13,8 +13,8 @@
     "support": {
         "email": "dagasmart@qq.com",
         "issues": "https://github.com/dagasmart/bizadmin/issues",
-        "forum": "https://github.com/orgs/bizadmin/discussions",
-        "wiki": "https://doc.biz.dagasmart.com/"
+        "forum": "https://github.com/dagasmart/bizadmin/discussions",
+        "wiki": "https://doc.bizadmin.com/"
     },
     "keywords": [
         "laravel",
@@ -27,11 +27,13 @@
         "illuminate/support": ">=11",
         "dagasmart/laravel-support": "*",
         "ext-zip": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
-            "DagaSmart\\BizAdmin\\": "src/"
+            "DagaSmart\\BizAdmin\\": "src/",
+            "Modules\\": "modules/"
         },
         "files": [
             "src/Support/helpers.php"
