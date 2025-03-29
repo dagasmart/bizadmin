@@ -94,7 +94,11 @@ class Route
                 $router->post('_admin_permissions_auto_generate', [AdminPermissionController::class, 'autoGenerate']);
             });
 
-            if ($config('admin.show_development_tools')) {
+            //多条件判断是否显示开发者工具
+            $showDevelopmentTools = !Admin::currentModule(true)
+                                    && Admin::config('admin.show_development_tools');
+
+            if ($showDevelopmentTools) {
                 $router->group(['prefix' => 'dev_tools'], function (Router $router) {
                     $router->resource('code_generator', CodeGeneratorController::class);
                     $router->group(['prefix' => 'code_generator'], function (Router $router) {

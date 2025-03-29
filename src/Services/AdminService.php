@@ -245,7 +245,7 @@ abstract class AdminService
     {
         $updatedAtColumn = $this->getModel()->getUpdatedAtColumn();
 
-        if ($this->hasColumn($updatedAtColumn)) {
+        if ($this->getModel()->timestamps && $this->hasColumn($updatedAtColumn)) {
             return $updatedAtColumn;
         }
 

@@ -49,9 +49,10 @@ class AdminPermissionController extends AdminController
                 amis('reload')->set('align', 'right'),
                 amis('filter-toggler')->set('align', 'right'),
             ])
+            ->autoFillHeight(true)
             ->columns([
                 amis()->TableColumn('id', 'ID')->sortable(),
-                amis()->TableColumn('name', admin_trans('admin.admin_permission.name')),
+                amis()->TableColumn('name', admin_trans('admin.admin_permission.name'))->searchable(),
                 amis()->TableColumn('slug', admin_trans('admin.admin_permission.slug')),
                 amis()->TableColumn('http_method', admin_trans('admin.admin_permission.http_method'))
                     ->type('each')

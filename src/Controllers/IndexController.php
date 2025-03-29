@@ -35,6 +35,11 @@ class IndexController extends AdminController
             $locale = 'zh_CN';
         }
 
+        //多条件判断是否显示开发者工具
+        $showDevelopmentTools = Admin::isUseDevelopTools()
+                                && !Admin::currentModule(true)
+                                && Admin::config('admin.show_development_tools');
+
         return $this->response()->success([
             'nav'      => Admin::getNav(),
             'assets'   => Admin::getAssets(),
@@ -45,7 +50,7 @@ class IndexController extends AdminController
 
             'login_captcha'          => Admin::config('admin.auth.login_captcha'),
             'locale_options'         => map2options($localeOptions),
-            'show_development_tools' => Admin::config('admin.show_development_tools'),
+            'show_development_tools' => $showDevelopmentTools,
             'system_theme_setting'   => settings()->getByModule('system_theme_setting'),
             'enabled_extensions'     => Extension::query()->where('is_enabled', 1)->pluck('name')?->toArray(),
         ]);

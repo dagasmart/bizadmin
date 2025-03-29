@@ -89,9 +89,14 @@ class Permission
             return false;
         }
 
+        //多条件判断是否显示开发者工具
+        $showDevelopmentTools = Admin::isUseDevelopTools()
+                                && !Admin::currentModule(true)
+                                && Admin::config('admin.show_development_tools');
+
         $excepted = collect(Admin::config('admin.auth.except', []))
             ->merge($this->permissionExcept)
-            ->merge(Admin::config('admin.show_development_tools') ? ['/dev_tools*'] : [])
+            ->merge($showDevelopmentTools ? ['/dev_tools*'] : [])
             ->map(fn($path) => $this->pathFormatting($path))
             ->contains(fn($except) => $request->is($except == '/' ? $except : trim($except, '/')));
 

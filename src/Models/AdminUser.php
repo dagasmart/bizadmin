@@ -63,9 +63,22 @@ class AdminUser extends User implements AuthenticatableContract
         return $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($abilities);
     }
 
+    /**
+     * 是否超级管理员
+     * @return bool
+     */
     public function isAdministrator(): bool
     {
         return $this->isRole(AdminRole::SuperAdministrator);
+    }
+
+    /**
+     * 是否开发者
+     * @return bool
+     */
+    public function isDeveloper(): bool
+    {
+        return $this->isRole(AdminRole::SuperDeveloper);
     }
 
     public function isRole(string $role): bool

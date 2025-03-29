@@ -165,18 +165,14 @@ class Menu
             ];
         }
 
-        if (!Admin::currentModule(true) && Admin::config('admin.show_development_tools')) {
+        //多条件判断是否显示开发者工具
+        $showDevelopmentTools = Admin::isUseDevelopTools()
+                                && !Admin::currentModule(true)
+                                && Admin::config('admin.show_development_tools');
 
-            $user = Admin::user();
+        if ($showDevelopmentTools) {
 
-            $isAdministrator = $user->isAdministrator();
-
-            $slug = array_column($user->roles->toArray(), 'slug'); //角色集合
-            $isDeveloper = $slug && in_array('develop', $slug); //是否开发者
-
-            if ($isAdministrator || $isDeveloper) {
-                $extraMenus = array_merge($extraMenus, $this->devToolMenus());
-            }
+            $extraMenus = array_merge($extraMenus, $this->devToolMenus());
 
         }
 

@@ -83,6 +83,19 @@ class Admin
         return static::guard()->user();
     }
 
+    /**
+     * 是否有权限使用开发者工具
+     * @return bool
+     */
+    public static function isUseDevelopTools(): bool
+    {
+        $user = static::user();
+        //是否超管员,或开发者
+        return $user && ($user->isAdministrator() || $user->isDeveloper());
+    }
+
+
+
     public static function bootstrap()
     {
         $file = self::config('admin.bootstrap');

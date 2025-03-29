@@ -8,7 +8,8 @@ class AdminRole extends BaseModel
 {
     use HasTimestamps;
 
-    const SuperAdministrator = 'administrator';
+    const SuperAdministrator = 'administrator'; //管理员
+    const SuperDeveloper = 'developer'; //开发者
 
     public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
