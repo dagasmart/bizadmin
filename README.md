@@ -1,4 +1,4 @@
-# proAdmin
+# bizAdmin
 <br>
 
 ### 项目介绍
@@ -32,7 +32,7 @@
 
 ### 安装
 
-> 👉 __注意: `proAdmin` 是 `laravel` 的扩展包, 安装前请确保你会使用 `laravel12，PHP8.3+`版本以上`__
+> 👉 __注意: `bizAdmin` 是 `laravel` 的扩展包, 安装前请确保你会使用 `laravel12，PHP8.3+`版本以上`__
 
 ##### 1. 创建 `laravel` 项目
 
@@ -61,7 +61,7 @@ php artisan install:api
 ##### 3. 获取 `Biz Admin`
 
 ```shell
-composer require dagasmart/proadmin
+composer require dagasmart/bizadmin
 ```
 
 ##### 4. 安装
@@ -84,7 +84,7 @@ _初始账号密码都是 `admin`_
 
 ## 创建模块
 
-这个命令会创建 `proadmin` 所需的文件和目录, 以及相关的数据库及基础数据
+这个命令会创建 `bizadmin` 所需的文件和目录, 以及相关的数据库及基础数据
 建议首字母大写, 使用大驼峰格式
 
 ```bash
