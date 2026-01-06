@@ -1,5 +1,5 @@
 {
-    "name": "dagasmart/proadmin",
+    "name": "dagasmart/bizadmin",
     "description": "基于 laravel、amis 开发的后台框架~",
     "license": "MIT",
     "authors": [
@@ -9,16 +9,16 @@
             "homepage": "https://github.com/dagasmart"
         }
     ],
-    "homepage": "https://github.com/dagasmart/proadmin",
+    "homepage": "https://github.com/dagasmart/bizadmin",
     "support": {
         "email": "dagasmart@qq.com",
-        "issues": "https://github.com/dagasmart/proadmin/issues",
-        "forum": "https://github.com/dagasmart/proadmin/discussions",
-        "wiki": "https://doc.dagasmart.com/"
+        "issues": "https://github.com/dagasmart/bizadmin/issues",
+        "forum": "https://github.com/dagasmart/bizadmin/discussions",
+        "wiki": "https://doc.bizadmin.com/"
     },
     "keywords": [
         "laravel",
-        "proadmin",
+        "bizadmin",
         "admin",
         "amis"
     ],
@@ -36,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DagaSmart\\bizAdmin\\": "src/",
+            "DagaSmart\\BizAdmin\\": "src/",
             "Modules\\": "/modules/"
         },
         "files": [
@@ -46,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DagaSmart\\bizAdmin\\AdminServiceProvider"
+                "DagaSmart\\BizAdmin\\AdminServiceProvider"
             ],
             "aliases": {
-                "bizAdmin": "DagaSmart\\bizAdmin\\Facades\\bizAdmin"
+                "BizAdmin": "DagaSmart\\BizAdmin\\Facades\\BizAdmin"
             }
         }
     },
