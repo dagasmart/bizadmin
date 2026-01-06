@@ -1,0 +1,11 @@
+<?php
+/*
+    |__________________________________________________
+    |  DagaSmart CE pro by 3.0.17  |
+    |  Authorization on 2026-01-06 17:16:41              |
+    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Tel: 13511953492   |
+    |  Email: dagasmart@qq.com   |
+    |__________________________________________________|
+*/
+ namespace DagaSmart\BizAdmin\Middleware; use Illuminate\Routing\Pipeline; use Illuminate\Support\Collection; use Illuminate\Support\Str; class EnsureFrontendRequestsAreStateful { public function handle($nM8iW, $D4QGv) { $this->configureSecureCookieSessions(); return (new Pipeline(app()))->send($nM8iW)->through(static::fromFrontend($nM8iW) ? [function ($nM8iW, $D4QGv) { $nM8iW->attributes->set("\x73\141\156\x63\x74\x75\x6d", true); return $D4QGv($nM8iW); }, config("\x73\x61\156\143\x74\165\x6d\x2e\x6d\151\x64\144\x6c\x65\167\141\162\145\56\145\x6e\x63\x72\x79\160\164\137\x63\x6f\157\x6b\x69\145\163", \Illuminate\Cookie\Middleware\EncryptCookies::class), \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, \Illuminate\Session\Middleware\StartSession::class] : [])->then(function ($nM8iW) use($D4QGv) { return $D4QGv($nM8iW); }); } protected function configureSecureCookieSessions() { config(["\x73\x65\x73\163\x69\x6f\156\x2e\x68\164\x74\160\x5f\157\x6e\154\x79" => true, "\163\x65\x73\x73\151\x6f\156\56\163\141\155\x65\137\x73\x69\164\x65" => "\154\141\170"]); } public static function fromFrontend($nM8iW) { goto aYkLF; aH_UK: $NIl1u = array_filter(config("\163\x61\x6e\x63\x74\x75\x6d\56\163\x74\x61\164\x65\x66\x75\154", [])); goto Wqnr1; X_q7s: $Dpe2N = Str::replaceFirst("\150\x74\x74\x70\x73\72\57\x2f", '', $Dpe2N); goto SZWu1; rxAK7: Lq7Ry: goto X_q7s; m76Zw: if (!is_null($Dpe2N)) { goto Lq7Ry; } goto hmSqs; Wqnr1: return Str::is(Collection::make($NIl1u)->map(fn($xo2XG) => trim($xo2XG) . "\x2f\x2a")->all(), $Dpe2N); goto JWLNI; NDt7M: $Dpe2N = Str::endsWith($Dpe2N, "\x2f") ? $Dpe2N : "{$Dpe2N}\x2f"; goto aH_UK; SZWu1: $Dpe2N = Str::replaceFirst("\x68\x74\164\x70\x3a\57\x2f", '', $Dpe2N); goto NDt7M; aYkLF: $Dpe2N = $nM8iW->headers->get("\x72\x65\146\145\x72\145\x72") ?: $nM8iW->headers->get("\157\x72\151\x67\x69\x6e"); goto m76Zw; hmSqs: return false; goto rxAK7; JWLNI: } }

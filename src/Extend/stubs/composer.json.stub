@@ -1,0 +1,36 @@
+{
+    "name": "{package}",
+    "alias": "{alias}",
+    "description": "{description}",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": ["bizadmin", "extension"],
+    "homepage": "https://github.com/{package}",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "{auth_name}",
+            "email": "{auth_email}"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "dagasmart/bizadmin": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "{namespace}": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "bizadmin": "{namespace}{className}ServiceProvider",
+        "laravel": {
+            "providers": [
+                "{namespace}{className}ServiceProvider"
+            ]
+        }
+    }
+}

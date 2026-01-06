@@ -1,0 +1,12 @@
+<?php
+
+use {namespace}\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use DagaSmart\BizAdmin\Middleware\Permission;
+use DagaSmart\BizAdmin\Middleware\Authenticate;
+
+
+Route::get('{path}', [Controllers\{className}Controller::class, 'index']);
+
+//免登录无限制
+//Route::get('{path}', [Controllers\{className}Controller::class, 'index'])->withoutMiddleware([Authenticate::class, Permission::class]);

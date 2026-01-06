@@ -1,0 +1,11 @@
+<?php
+/*
+    |__________________________________________________
+    |  DagaSmart CE pro by 3.0.17  |
+    |  Authorization on 2026-01-06 17:16:43              |
+    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Tel: 13511953492   |
+    |  Email: dagasmart@qq.com   |
+    |__________________________________________________|
+*/
+ namespace DagaSmart\BizAdmin\Support\Apis; use DagaSmart\BizAdmin\Admin; class DataCreateApi extends AdminBaseApi { public string $method = "\x70\x6f\x73\x74"; public function getTitle() { return admin_trans("\x61\144\155\x69\x6e\x2e\141\160\x69\x5f\164\x65\x6d\160\x6c\141\x74\145\x73\x2e\144\x61\164\x61\x5f\x63\x72\x65\x61\x74\x65"); } public function handle() { goto FZe4V; ULKP1: nxq1y: goto RWuW_; NsT5J: return Admin::response()->successMessage(admin_trans("\141\144\x6d\151\156\x2e\163\165\143\143\145\x73\x73\x66\x75\x6c\x6c\x79\x5f\155\x65\x73\x73\x61\x67\x65", ["\141\164\164\162\151\x62\x75\164\x65" => admin_trans("\x61\x64\155\x69\156\x2e\143\x72\145\141\x74\x65")])); goto ULKP1; RWuW_: return Admin::response()->fail(admin_trans("\x61\x64\155\x69\x6e\56\146\141\151\x6c\145\144\137\x6d\x65\163\163\x61\147\x65", ["\x61\x74\x74\162\151\x62\x75\x74\x65" => admin_trans("\141\x64\155\x69\x6e\56\143\162\x65\x61\164\x65")])); goto iRa1y; FZe4V: $bjVw_ = $this->service()->store(request()->all()); goto PEqm0; PEqm0: if (!$bjVw_) { goto nxq1y; } goto NsT5J; iRa1y: } public function argsSchema() { return [amis()->SelectControl("\x6d\x6f\144\x65\x6c", admin_trans("\141\x64\155\151\156\56\162\x65\x6c\141\x74\x69\x6f\x6e\x73\x68\151\x70\x73\x2e\155\x6f\x64\x65\154"))->required()->menuTpl("\44\x7b\154\x61\x62\145\154\x7d\x20\74\x73\x70\141\x6e\40\x63\154\141\163\x73\75\x22\164\x65\x78\164\x2d\147\162\141\171\x2d\63\60\x30\x20\x70\x6c\55\x32\42\x3e\44\173\x74\141\x62\154\x65\x7d\x3c\57\x73\x70\141\x6e\x3e")->source("\57\144\145\166\137\x74\157\x6f\x6c\x73\x2f\162\145\x6c\141\x74\151\157\x6e\57\x6d\157\144\x65\154\x5f\x6f\160\164\151\157\x6e\x73")->searchable()]; } protected function service() { goto sYAda; sYAda: $aY2_h = $this->blankService(); goto D_fFT; T3fGC: return $aY2_h; goto qXmC5; D_fFT: $aY2_h->setModelName($this->getArgs("\x6d\x6f\x64\145\154")); goto T3fGC; qXmC5: } }

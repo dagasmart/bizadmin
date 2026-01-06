@@ -1,0 +1,80 @@
+insertGetId获取最后插入数据id时，后续必须重新实例化模型：
+$adminMenu = DB::table('admin_menus');
+$adminMenu->insertGetId([...]);
+===========================================================================
+$adminMenu->get(); //查询的结果为最后插入数据id那条数据，必须重新实列化：
+DB::table('admin_menus')->get();
+===========================================================================
+全局作用域-查询条件（module、mer_id)
+vendor/dagasmart/bizadmin/src/Scopes/MerchantScope.php
+vendor/dagasmart/bizadmin/src/Scopes/ModuleScope.php
+
+vendor/dagasmart/bizadmin/src/Models/BaseModel.php,修改如下：
+/**
+ * 查询追加条件作用域：moduel、mer_id
+ * @return void
+ */
+protected static function boot()
+{
+    parent::boot();
+    //查询-模块作用域
+    static::addGlobalScope(new ModuleScope());
+    //查询-商户作用域
+    static::addGlobalScope(new MerchantScope());
+}
+
+/**
+ * 增删改追加参数作用域：moduel、mer_id
+ * @return void
+ */
+protected static function booted()
+{
+    if ($module = Admin::currentModule(true)) {
+        $merId = Admin::merId();
+        if (!is_null($merId)) {
+            static::creating(function ($model) use (&$module, &$merId) {
+                $table = $model->getTable();
+                /**
+                 * 判断
+                 * 表名、表和表字段同时存在时追加字段
+                 */
+                if ($table && Schema::hasTable($table)) {
+                    /**
+                     * 判断
+                     * 表名、表和表字段同时存在时，追加模块字段：module
+                     */
+                    if (Schema::hasColumn($table, 'module')) {
+                        $model->setAttribute('module', $module); // 追加模块字段和值
+                    }
+                    /**
+                     * 判断
+                     * 表名、表和表字段同时存在时，追加商户字段：mer_id
+                     */
+                    if (Schema::hasColumn($table, 'mer_id')) {
+                        $model->setAttribute('mer_id', $merId); // 追加商户字段和值
+                    }
+                }
+            });
+        }
+    }
+}
+===========================================================================
+模型里设置非主键自增id时，可设置复合主键或为null:
+
+protected $primaryKey = ['key','mer_id'];
+protected $primaryKey = null;
+
+===========================================================================
+路由报错，重建路由缓存：
+php artisan route:cache
+===========================================================================
+
+===========================================================================
+
+===========================================================================
+
+===========================================================================
+
+===========================================================================
+
+

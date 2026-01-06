@@ -1,0 +1,163 @@
+==============全局安装laravel框架=====================
+composer global require laravel/installer
+初始化一个项目：
+laravel new xxx
+
+============php artisan route:cache 报错路由已存在（ 可不用）===========
+找到文件：
+vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php
+修改方法：
+
+    protected function addToSymfonyRoutesCollection(SymfonyRouteCollection $symfonyRoutes, Route $route)
+    {
+        $name = $route->getName();
+
+        if (
+            ! is_null($name)
+            && str_ends_with($name, '.')
+            && ! is_null($symfonyRoutes->get($name))
+        ) {
+            $name = null;
+        }
+
+        if (! $name) {
+            $route->name($this->generateRouteName());
+
+            $this->add($route);
+        } elseif (! is_null($symfonyRoutes->get($name))) {
+            //追加以下这行代码
+            $symfonyRoutes->remove($name);
+            //throw new LogicException("Unable to prepare route [{$route->uri}] for serialization. Another route has already been assigned name [{$name}].");
+        }
+
+        $symfonyRoutes->add($route->getName(), $route->toSymfonyRoute());
+
+        return $symfonyRoutes;
+    }
+
+
+
+============created_at和updated_at自动更新时间===========
+示例如下：
+$table->timestamps();
+
+找到文件：
+修改laravel核心文件Blueprint.php，追加useCurrent()和->useCurrentOnUpdate()：
+vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
+
+    public function timestamps($precision = null)
+    {
+        $this->timestamp('created_at', $precision)->useCurrent()->nullable();
+
+        $this->timestamp('updated_at', $precision)->useCurrent()->useCurrentOnUpdate()->nullable();
+    }
+
+
+
+==============index()索引名长度超过64位解决方法================
+示例如下：
+$table->index(['aaa','bbb']);
+$table->unique(['aaa','bbb']);
+
+找到文件：
+修改laravel核心文件Blueprint.php，通过mb_strlen()判断长度超过64位时，例用uuid()做为索引名：
+vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
+
+//增加这行引入：
+use Illuminate\Support\Str;
+
+找到以下代码：
+    protected function createIndexName($type, array $columns)
+    {
+        $table = $this->table;
+
+        if ($this->connection->getConfig('prefix_indexes')) {
+            $table = str_contains($this->table, '.')
+                ? substr_replace($this->table, '.'.$this->connection->getTablePrefix(), strrpos($this->table, '.'), 1)
+                : $this->connection->getTablePrefix().$this->table;
+        }
+
+        $index = strtolower($table.'_'.implode('_', $columns).'_'.$type);
+
+        //追加以下这行代码,解决索引命名长度超过64位限制
+        $index = mb_strlen($index) > 64 ? Str::uuid() : $index;
+
+        return str_replace(['-', '.'], '_', $index);
+    }
+
+
+
+================deleted_at 软删时间====================
+示例如下：
+use Illuminate\Database\Eloquent\SoftDeletes;
+class AdminRoleUser extends BaseModel
+{
+    use SoftDeletes;
+    ...
+}
+
+找到文件：
+vendor/laravel/framework/src/Illuminate/Database/Eloquent/SoftDeletingScope.php
+
+//追加以下代码：
+use Illuminate\Support\Facades\Schema;
+
+找到方法函数，改成如下：
+
+    public function apply(Builder $builder, Model $model)
+    {
+        //改成如下：
+        if (Schema::hasColumn($model->getTable(), 'deleted_at')) {
+            $builder->whereNull($model->getQualifiedDeletedAtColumn());
+        }
+    }
+
+
+
+==============rename()报错解决方法=======
+示例如下：
+rename(\bootstrap\cache\ser3924.tmp,D:\WorkSpace\Git\GitHub\bizAdmin\laravel-12-pgsql\bootstrap\cache\services.php): 拒绝访问。 (code: 5)
+
+找到文件：
+vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php
+
+找到所有：return rename(xxx,xxx)，修改成：return @rename(xxx,xxx)
+
+
+
+
+==============物化视图扩展优化==============================
+1.找到文件：
+vendor/tpetry/laravel-postgresql-enhanced/src/Support/Facades/Schema.php
+/*
+...
+ * @method static void createRecursiveViewOrReplace(string $name, Builder|string $query, array $columns)
+//追加下以下代码：
+ * @method static bool materializedViewExists(string $name, ?string $schema = null)
+... 
+
+2.找到文件：
+vendor/tpetry/laravel-postgresql-enhanced/src/Schema/BuilderView.php
+
+
+trait BuilderView
+{
+    /**
+     * Create/Modify a continuous aggregate on the schema.
+     */
+    public function continuousAggregate($table, Closure $callback): void
+    {
+        $blueprint = new CaggBlueprint($table, $callback);
+        $blueprint->build($this->getConnection(), $this->getConnection()->getSchemaGrammar());
+    }
+
+    //追加下以下代码：
+
+    /**
+     * Has a materialized view on the schema.
+     */
+    public function materializedViewExists(string $name, string $schema = 'public')
+    {
+        $query = Query::toSql("SELECT * FROM pg_matviews WHERE matviewname='$name' AND schemaname='$schema'");
+        return (bool) $this->getConnection()->selectOne($query);
+    }

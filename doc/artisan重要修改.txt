@@ -1,0 +1,58 @@
+
+======================created_at和updated_at自动更新时间=====================================
+
+示例如下：
+$table->timestamps();
+
+找到文件：
+修改laravel核心文件Blueprint.php，追加useCurrent()和->useCurrentOnUpdate()：
+vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
+
+    public function timestamps($precision = null)
+    {
+        $this->timestamp('created_at', $precision)->useCurrent()->nullable();
+
+        $this->timestamp('updated_at', $precision)->useCurrent()->useCurrentOnUpdate()->nullable();
+    }
+
+==============================rename()报错解决方法=======================================
+
+示例如下：
+rename(\bootstrap\cache\ser3924.tmp,D:\WorkSpace\Git\GitHub\bizAdmin\laravel-12-pgsql\bootstrap\cache\services.php): 拒绝访问。 (code: 5)
+
+找到文件：
+vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php
+
+找到所有：return rename(xxx,xxx)，修改成：return @rename(xxx,xxx)
+
+==============================index()索引名长度超过64位解决方法=======================================
+
+示例如下：
+$table->index(['aaa','bbb']);
+$table->unique(['aaa','bbb']);
+
+找到文件：
+修改laravel核心文件Blueprint.php，通过mb_strlen()判断长度超过64位时，例用uuid()做为索引名：
+vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
+
+//增加这行引入：
+use Illuminate\Support\Str;
+
+找到以下代码：
+    protected function createIndexName($type, array $columns)
+    {
+        $table = $this->table;
+
+        if ($this->connection->getConfig('prefix_indexes')) {
+            $table = str_contains($this->table, '.')
+                ? substr_replace($this->table, '.'.$this->connection->getTablePrefix(), strrpos($this->table, '.'), 1)
+                : $this->connection->getTablePrefix().$this->table;
+        }
+
+        $index = strtolower($table.'_'.implode('_', $columns).'_'.$type);
+
+        //追加以下这行代码,解决索引命名长度超过64位限制
+        $index = mb_strlen($index) > 64 ? Str::uuid() : $index;
+
+        return str_replace(['-', '.'], '_', $index);
+    }
