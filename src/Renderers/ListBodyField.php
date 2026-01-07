@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-06 17:16:42              |
+    |  Authorization on 2026-01-07 13:12:21              |
     |  GitHub: https://github.com/dagasmart/proadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class ListBodyField extends BaseRenderer { public function __construct() { } public function copyable($AHvXX = true) { return $this->set("\143\157\160\171\x61\142\154\x65", $AHvXX); } public function innerClassName($AHvXX = '') { return $this->set("\151\x6e\156\x65\x72\103\154\141\x73\163\116\141\x6d\145", $AHvXX); } public function label($AHvXX = '') { return $this->set("\154\141\x62\x65\154", $AHvXX); } public function labelClassName($AHvXX = '') { return $this->set("\154\141\x62\145\x6c\x43\154\141\163\163\116\141\x6d\x65", $AHvXX); } public function name($AHvXX = '') { return $this->set("\x6e\141\155\145", $AHvXX); } public function popOver($AHvXX = '') { return $this->set("\x70\157\x70\117\x76\145\x72", $AHvXX); } public function quickEdit($AHvXX = '') { return $this->set("\x71\165\x69\143\x6b\x45\144\151\164", $AHvXX); } }
+ namespace DagaSmart\BizAdmin\Renderers; class ListBodyField extends BaseRenderer { public function __construct() { } public function copyable($w0aoq = true) { return $this->set("\x63\x6f\x70\171\x61\x62\x6c\x65", $w0aoq); } public function innerClassName($w0aoq = '') { return $this->set("\x69\156\156\145\x72\x43\154\141\163\163\x4e\x61\155\x65", $w0aoq); } public function label($w0aoq = '') { return $this->set("\154\x61\x62\145\154", $w0aoq); } public function labelClassName($w0aoq = '') { return $this->set("\154\141\x62\x65\154\103\154\x61\163\x73\116\x61\155\x65", $w0aoq); } public function name($w0aoq = '') { return $this->set("\156\x61\x6d\x65", $w0aoq); } public function popOver($w0aoq = '') { return $this->set("\160\157\x70\x4f\x76\145\x72", $w0aoq); } public function quickEdit($w0aoq = '') { return $this->set("\161\x75\x69\x63\x6b\105\x64\x69\x74", $w0aoq); } }
