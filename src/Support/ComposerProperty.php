@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:23              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-07 13:37:07              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Support; use Illuminate\Contracts\Support\Arrayable; use Illuminate\Support\Arr; class ComposerProperty implements Arrayable { protected array $attributes = []; public function __construct(array $REoPi = []) { $this->attributes = $REoPi; } public function get($UgLSm, $kbdi2 = null) { return Arr::get($this->attributes, $UgLSm, $kbdi2); } public function set($UgLSm, $hsIzH) { goto plg9A; Ao2yl: return new static($VmWj5); goto eKmqQ; plg9A: $VmWj5 = $this->attributes; goto fC4Ti; fC4Ti: Arr::set($VmWj5, $UgLSm, $hsIzH); goto Ao2yl; eKmqQ: } public function delete($UgLSm) { goto vA2s9; PX7kA: return new static($VmWj5); goto VwceQ; vA2s9: $VmWj5 = $this->attributes; goto h8psq; h8psq: Arr::forget($VmWj5, $UgLSm); goto PX7kA; VwceQ: } public function __get($nZRUA) { return $this->get(str_replace("\x5f", "\x2d", $nZRUA)); } public function toArray() { return $this->attributes; } public function toJson() { return json_encode($this->toArray()); } }
+ namespace DagaSmart\BizAdmin\Support; use Illuminate\Contracts\Support\Arrayable; use Illuminate\Support\Arr; class ComposerProperty implements Arrayable { protected array $attributes = []; public function __construct(array $Q1U_o = []) { $this->attributes = $Q1U_o; } public function get($pCJnP, $r9yi5 = null) { return Arr::get($this->attributes, $pCJnP, $r9yi5); } public function set($pCJnP, $NPzBA) { goto FrNHF; NEGbP: return new static($gQWMD); goto i_HAd; hk72p: Arr::set($gQWMD, $pCJnP, $NPzBA); goto NEGbP; FrNHF: $gQWMD = $this->attributes; goto hk72p; i_HAd: } public function delete($pCJnP) { goto sk8_5; RWJMv: Arr::forget($gQWMD, $pCJnP); goto KsdNV; KsdNV: return new static($gQWMD); goto E2kNP; sk8_5: $gQWMD = $this->attributes; goto RWJMv; E2kNP: } public function __get($agbTa) { return $this->get(str_replace("\x5f", "\55", $agbTa)); } public function toArray() { return $this->attributes; } public function toJson() { return json_encode($this->toArray()); } }
