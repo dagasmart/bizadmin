@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:19              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-09 15:18:41              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- use Illuminate\Support\Facades\Route; goto TPNrr; RjVoP: Route::domain("\167\x77\x77\x2e\x73\x6d\141\x72\x74\x2e\x63\157\155")->get("\x2f", fn() => redirect("\57\141\160\x69")); goto w1x4R; TPNrr: Route::get("\57", function () { return view("\x77\145\154\143\x6f\x6d\x65"); }); goto acknk; acknk: Route::domain("\145\x72\x70\56\163\155\141\162\164\56\143\x6f\155")->get("\x2f", fn() => redirect("\57\141\144\155\x69\x6e")); goto RjVoP; w1x4R: Route::fallback(function () { admin_abort("\xe9\241\xb5\xe9\x9d\242\xe4\270\x8d\xe5\255\x98\345\x9c\250\xef\274\210\345\x8f\xaf\350\x83\275\xe5\216\x9f\345\x9b\xa0\xef\xbc\x9a\x31\x2e\xe8\267\xaf\xe7\224\261\346\234\xaa\345\256\232\344\xb9\x89\357\xbc\x9b\62\56\346\210\226\346\x89\xa9\xe5\261\225\346\217\x92\xe4\xbb\266\346\234\xaa\xe5\x90\257\xe7\x94\250\xef\274\211"); });
+ use Illuminate\Support\Facades\Route; goto PtbAA; OT6fl: Route::domain("\167\167\x77\56\163\155\x61\162\164\x2e\143\x6f\x6d")->get("\57", fn() => redirect("\57\x61\x70\x69")); goto j_bpJ; PtbAA: Route::get("\57", function () { return view("\167\x65\x6c\x63\157\155\x65"); }); goto piM4v; piM4v: Route::domain("\x65\162\x70\x2e\163\155\141\162\x74\56\x63\157\x6d")->get("\x2f", fn() => redirect("\57\141\x64\x6d\x69\x6e")); goto OT6fl; j_bpJ: Route::fallback(function () { admin_abort("\351\xa1\265\351\x9d\xa2\344\270\x8d\xe5\255\x98\xe5\x9c\xa8\xef\274\x88\345\217\xaf\xe8\203\xbd\345\216\x9f\345\x9b\xa0\357\xbc\232\61\56\350\xb7\257\xe7\224\261\346\234\xaa\345\xae\x9a\344\xb9\x89\xef\xbc\233\x32\56\xe6\210\226\346\211\xa9\345\xb1\x95\xe6\x8f\x92\344\xbb\266\xe6\x9c\252\345\x90\xaf\xe7\224\250\xef\274\211"); });
