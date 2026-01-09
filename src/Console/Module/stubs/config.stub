@@ -5,7 +5,7 @@ return [
     'name'           => '{{module_name}} Admin™',
 
     // 应用 logo
-    'logo'           => '/admin-assets/logo.png',
+    'logo'           => '/admin-assets/logo.svg',
 
     // 默认头像
     'default_avatar' => '/admin-assets/default-avatar.svg',
