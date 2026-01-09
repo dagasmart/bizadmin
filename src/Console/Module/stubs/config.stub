@@ -10,6 +10,9 @@ return [
     // 默认头像
     'default_avatar' => '/admin-assets/default-avatar.png',
 
+    // 默认占位图片
+    'default_image' => '/admin-assets/default-image.svg',
+
     // 引导文件
     'bootstrap' => {{bootstrap}},
 
