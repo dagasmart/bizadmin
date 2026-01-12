@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-12 16:13:45              |
+    |  Authorization on 2026-01-12 17:11:58              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Response; class Authenticate { public function handle($kH3yn, Closure $gd30M) { goto PMdNm; mh5rw: Admin::permission()->checkUserStatus(); goto PiIMP; PiIMP: return $gd30M($kH3yn); goto mTDS4; nm1iw: return Admin::response()->additional(["\x63\x6f\144\x65" => Response::HTTP_UNAUTHORIZED])->doNotDisplayToast()->fail(admin_trans("\141\144\x6d\x69\156\x2e\160\x6c\x65\141\x73\145\137\154\157\x67\151\156")); goto w99U9; w99U9: GQJD3: goto mh5rw; PMdNm: if (!Admin::permission()->authIntercept($kH3yn)) { goto GQJD3; } goto nm1iw; mTDS4: } }
+ namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Response; class Authenticate { public function handle($dCPl0, Closure $b8Qpg) { goto Td44k; Td44k: if (!Admin::permission()->authIntercept($dCPl0)) { goto E2gEu; } goto KFIBJ; KFIBJ: return Admin::response()->additional(["\143\157\144\145" => Response::HTTP_UNAUTHORIZED])->doNotDisplayToast()->fail(admin_trans("\x61\x64\155\151\156\56\160\x6c\x65\141\163\x65\137\154\157\x67\x69\x6e")); goto UbR85; LY5Xa: Admin::permission()->checkUserStatus(); goto VcZc0; VcZc0: return $b8Qpg($dCPl0); goto AGf1Z; UbR85: E2gEu: goto LY5Xa; AGf1Z: } }
