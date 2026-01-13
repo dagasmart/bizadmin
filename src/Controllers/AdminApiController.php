@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-12 17:11:57              |
+    |  Authorization on 2026-01-13 11:29:46              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Controllers; use DagaSmart\BizAdmin\Admin; use Illuminate\Support\Str; use DagaSmart\BizAdmin\Services\AdminApiService; class AdminApiController extends AdminController { public string $serviceName = AdminApiService::class; public function index() { goto k5ApS; d6UUB: EjYaQ: goto BqtQH; k5ApS: $doLfm = Str::of(request()->path())->replace(Admin::config("\141\144\x6d\x69\156\x2e\x72\x6f\165\x74\145\56\160\x72\x65\146\x69\x78"), '')->value(); goto gmjnd; BqtQH: return app($dUR9E->template)->setApiRecord($dUR9E)->handle(); goto XcsHI; SM0Pw: return $this->response()->success(); goto d6UUB; lNKUB: if ($dUR9E) { goto EjYaQ; } goto SM0Pw; gmjnd: $dUR9E = $this->service->getApiByPath($doLfm); goto lNKUB; XcsHI: } }
+ namespace DagaSmart\BizAdmin\Controllers; use DagaSmart\BizAdmin\Admin; use Illuminate\Support\Str; use DagaSmart\BizAdmin\Services\AdminApiService; class AdminApiController extends AdminController { public string $serviceName = AdminApiService::class; public function index() { goto Okj0o; b8pyu: return $this->response()->success(); goto tAC3h; DOvdO: return app($jo_BC->template)->setApiRecord($jo_BC)->handle(); goto m5a9F; tAC3h: FubuC: goto DOvdO; Okj0o: $e01IC = Str::of(request()->path())->replace(Admin::config("\141\x64\x6d\151\156\56\162\157\x75\x74\145\56\x70\162\145\146\151\x78"), '')->value(); goto SpDr3; h2hmG: if ($jo_BC) { goto FubuC; } goto b8pyu; SpDr3: $jo_BC = $this->service->getApiByPath($e01IC); goto h2hmG; m5a9F: } }

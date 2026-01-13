@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:20              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-13 11:29:46              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Models; class AdminSetting extends BaseModel { protected $table = "\x61\144\155\151\x6e\x5f\163\x65\x74\x74\x69\156\x67\163"; protected $primaryKey = "\151\144"; protected $guarded = array(); protected $casts = array("\x76\141\x6c\165\145\163" => "\152\163\x6f\156"); protected function asJson($w0aoq, $WwS9Z = true) { return json_encode($w0aoq, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); } }
+ namespace DagaSmart\BizAdmin\Models; class AdminSetting extends BaseModel { protected $table = "\x61\x64\155\x69\156\137\163\145\164\x74\x69\x6e\147\163"; protected $primaryKey = "\x69\x64"; protected $guarded = array(); protected $casts = array("\x76\x61\x6c\x75\x65\x73" => "\152\x73\157\x6e"); protected function asJson($JqsAq, $d_1ai = true) { return json_encode($JqsAq, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); } }

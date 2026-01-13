@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:23              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-13 11:29:49              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Traits; trait AssetsTrait { public static function asset() { return app("\x61\144\155\x69\156\56\141\163\x73\145\164"); } public static function js($KlqV4 = null) { return static::asset()->js($KlqV4); } public static function css($fuJfl = null) { return static::asset()->css($fuJfl); } public static function scripts($c50PM = null) { return static::asset()->scripts($c50PM); } public static function styles($ryjpp = null) { return static::asset()->styles($ryjpp); } public static function getAssets() { return ["\x6a\x73" => static::asset()->js(), "\x63\163\x73" => static::asset()->css(), "\163\x63\x72\151\160\164\x73" => static::asset()->scripts(), "\163\x74\171\x6c\x65\163" => static::asset()->styles()]; } public static function appendNav($gsioJ = null) { return static::asset()->appendNav($gsioJ); } public static function prependNav($avZCo = null) { return static::asset()->prependNav($avZCo); } public static function getNav() { return ["\x61\x70\160\x65\x6e\144\x4e\141\166" => static::asset()->appendNav(), "\160\162\145\x70\x65\156\x64\116\141\166" => static::asset()->prependNav()]; } }
+ namespace DagaSmart\BizAdmin\Traits; trait AssetsTrait { public static function asset() { return app("\x61\144\x6d\151\x6e\56\x61\163\163\145\x74"); } public static function js($NmLSu = null) { return static::asset()->js($NmLSu); } public static function css($CA_cU = null) { return static::asset()->css($CA_cU); } public static function scripts($ud0q0 = null) { return static::asset()->scripts($ud0q0); } public static function styles($scxjy = null) { return static::asset()->styles($scxjy); } public static function getAssets() { return ["\x6a\x73" => static::asset()->js(), "\x63\x73\163" => static::asset()->css(), "\x73\143\x72\x69\160\164\x73" => static::asset()->scripts(), "\163\x74\171\154\x65\163" => static::asset()->styles()]; } public static function appendNav($Q2Mmj = null) { return static::asset()->appendNav($Q2Mmj); } public static function prependNav($s4YUJ = null) { return static::asset()->prependNav($s4YUJ); } public static function getNav() { return ["\x61\x70\x70\145\156\144\116\141\166" => static::asset()->appendNav(), "\x70\x72\145\160\x65\156\x64\116\x61\166" => static::asset()->prependNav()]; } }

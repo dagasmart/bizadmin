@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:22              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-13 11:29:48              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class Toast extends BaseRenderer { public function __construct() { } public function body($w0aoq = '') { return $this->set("\142\157\144\171", $w0aoq); } public function closeButton($w0aoq = true) { return $this->set("\x63\x6c\157\163\x65\102\165\x74\x74\157\x6e", $w0aoq); } public function items($w0aoq = '') { return $this->set("\x69\x74\x65\x6d\x73", $w0aoq); } public function level($w0aoq = '') { return $this->set("\x6c\x65\x76\145\x6c", $w0aoq); } public function position($w0aoq = '') { return $this->set("\160\x6f\163\151\164\x69\x6f\156", $w0aoq); } public function showIcon($w0aoq = true) { return $this->set("\x73\x68\157\167\111\x63\x6f\156", $w0aoq); } public function timeout($w0aoq = '') { return $this->set("\x74\151\x6d\145\x6f\x75\x74", $w0aoq); } public function title($w0aoq = '') { return $this->set("\164\151\164\154\x65", $w0aoq); } }
+ namespace DagaSmart\BizAdmin\Renderers; class Toast extends BaseRenderer { public function __construct() { } public function body($JqsAq = '') { return $this->set("\x62\x6f\144\x79", $JqsAq); } public function closeButton($JqsAq = true) { return $this->set("\143\154\x6f\163\145\x42\x75\164\x74\157\x6e", $JqsAq); } public function items($JqsAq = '') { return $this->set("\x69\x74\145\155\163", $JqsAq); } public function level($JqsAq = '') { return $this->set("\x6c\145\x76\x65\154", $JqsAq); } public function position($JqsAq = '') { return $this->set("\160\157\163\151\x74\151\x6f\x6e", $JqsAq); } public function showIcon($JqsAq = true) { return $this->set("\x73\x68\157\x77\x49\x63\157\x6e", $JqsAq); } public function timeout($JqsAq = '') { return $this->set("\x74\151\155\145\157\165\x74", $JqsAq); } public function title($JqsAq = '') { return $this->set("\x74\151\x74\x6c\x65", $JqsAq); } }

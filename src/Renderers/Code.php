@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:20              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-13 11:29:46              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class Code extends BaseRenderer { public function __construct() { $this->set("\x74\x79\160\x65", "\143\157\144\x65"); } public function className($w0aoq = '') { return $this->set("\143\154\141\x73\163\116\x61\x6d\x65", $w0aoq); } public function editorTheme($w0aoq = '') { return $this->set("\x65\144\x69\164\x6f\162\x54\150\145\x6d\145", $w0aoq); } public function language($w0aoq = '') { return $this->set("\154\x61\156\147\x75\x61\147\145", $w0aoq); } public function name($w0aoq = '') { return $this->set("\x6e\x61\x6d\x65", $w0aoq); } public function tabSize($w0aoq = '') { return $this->set("\x74\141\142\x53\x69\x7a\145", $w0aoq); } public function type($w0aoq = "\x63\157\x64\x65") { return $this->set("\164\x79\x70\145", $w0aoq); } public function value($w0aoq = '') { return $this->set("\x76\x61\154\165\145", $w0aoq); } public function wordWrap($w0aoq = true) { return $this->set("\167\x6f\x72\x64\127\162\x61\x70", $w0aoq); } }
+ namespace DagaSmart\BizAdmin\Renderers; class Code extends BaseRenderer { public function __construct() { $this->set("\164\x79\x70\x65", "\143\x6f\x64\x65"); } public function className($JqsAq = '') { return $this->set("\143\154\141\163\x73\116\141\155\145", $JqsAq); } public function editorTheme($JqsAq = '') { return $this->set("\145\144\151\x74\157\162\x54\x68\145\x6d\145", $JqsAq); } public function language($JqsAq = '') { return $this->set("\x6c\x61\156\x67\x75\141\147\145", $JqsAq); } public function name($JqsAq = '') { return $this->set("\156\141\155\145", $JqsAq); } public function tabSize($JqsAq = '') { return $this->set("\x74\141\142\x53\151\x7a\145", $JqsAq); } public function type($JqsAq = "\143\x6f\x64\x65") { return $this->set("\164\171\160\145", $JqsAq); } public function value($JqsAq = '') { return $this->set("\166\141\154\165\x65", $JqsAq); } public function wordWrap($JqsAq = true) { return $this->set("\167\157\162\144\127\x72\x61\x70", $JqsAq); } }

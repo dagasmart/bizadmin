@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-12 18:24:34              |
+    |  Authorization on 2026-01-13 11:29:46              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Middleware; use Closure; use Illuminate\Support\Facades\App; class AutoSetLocale { public function handle($GixJ3, Closure $z8_TV) { goto kgo60; kgo60: $wI4ng = request()->header("\154\x6f\143\x61\154\x65", config("\141\x70\160\x2e\x6c\x6f\143\141\x6c\145")); goto hP4_I; PtJcD: return $z8_TV($GixJ3); goto WK4Vq; hP4_I: App::setLocale($wI4ng); goto PtJcD; WK4Vq: } }
+ namespace DagaSmart\BizAdmin\Middleware; use Closure; use Illuminate\Support\Facades\App; class AutoSetLocale { public function handle($LWaOu, Closure $wSUyZ) { goto yb_Py; yb_Py: $nymrp = request()->header("\154\x6f\143\141\x6c\x65", config("\x61\160\160\56\x6c\x6f\x63\141\x6c\145")); goto cNv6_; S5RH_: return $wSUyZ($LWaOu); goto ESh2z; cNv6_: App::setLocale($nymrp); goto S5RH_; ESh2z: } }
