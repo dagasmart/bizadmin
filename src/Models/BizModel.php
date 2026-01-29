@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-13 11:29:46              |
+    |  Authorization on 2026-01-29 22:52:34              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Models; use DagaSmart\BizAdmin\Models\BaseModel; class BizModel extends BaseModel { protected $connection = "\142\151\x7a"; }
+ namespace DagaSmart\BizAdmin\Models; use DagaSmart\BizAdmin\Models\BaseModel; class BizModel extends BaseModel { protected $connection = "\142\151\172"; }

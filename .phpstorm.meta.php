@@ -2,8 +2,8 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-07 13:12:19              |
-    |  GitHub: https://github.com/dagasmart/proadmin    |
+    |  Authorization on 2026-01-29 22:52:32              |
+    |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|

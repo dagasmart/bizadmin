@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-13 11:29:48              |
+    |  Authorization on 2026-01-29 22:52:39              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class Toast extends BaseRenderer { public function __construct() { } public function body($JqsAq = '') { return $this->set("\x62\x6f\144\x79", $JqsAq); } public function closeButton($JqsAq = true) { return $this->set("\143\154\x6f\163\145\x42\x75\164\x74\157\x6e", $JqsAq); } public function items($JqsAq = '') { return $this->set("\x69\x74\145\155\163", $JqsAq); } public function level($JqsAq = '') { return $this->set("\x6c\145\x76\x65\154", $JqsAq); } public function position($JqsAq = '') { return $this->set("\160\157\163\151\x74\151\x6f\x6e", $JqsAq); } public function showIcon($JqsAq = true) { return $this->set("\x73\x68\157\x77\x49\x63\157\x6e", $JqsAq); } public function timeout($JqsAq = '') { return $this->set("\x74\151\155\145\157\165\x74", $JqsAq); } public function title($JqsAq = '') { return $this->set("\x74\151\x74\x6c\x65", $JqsAq); } }
+ namespace DagaSmart\BizAdmin\Renderers; class Toast extends BaseRenderer { public function __construct() { } public function body($PfrF0 = '') { return $this->set("\142\x6f\x64\x79", $PfrF0); } public function closeButton($PfrF0 = true) { return $this->set("\143\154\x6f\x73\145\102\165\164\164\x6f\156", $PfrF0); } public function items($PfrF0 = '') { return $this->set("\151\x74\x65\155\163", $PfrF0); } public function level($PfrF0 = '') { return $this->set("\x6c\145\x76\x65\154", $PfrF0); } public function position($PfrF0 = '') { return $this->set("\160\157\163\x69\x74\x69\157\x6e", $PfrF0); } public function showIcon($PfrF0 = true) { return $this->set("\x73\150\157\167\111\x63\x6f\x6e", $PfrF0); } public function timeout($PfrF0 = '') { return $this->set("\x74\151\155\x65\x6f\165\164", $PfrF0); } public function title($PfrF0 = '') { return $this->set("\164\151\x74\x6c\x65", $PfrF0); } }

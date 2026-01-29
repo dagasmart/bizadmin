@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-13 11:29:47              |
+    |  Authorization on 2026-01-29 22:52:37              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class IconChecked extends BaseRenderer { public function __construct() { } public function id($JqsAq = '') { return $this->set("\151\144", $JqsAq); } public function name($JqsAq = '') { return $this->set("\156\x61\155\x65", $JqsAq); } public function svg($JqsAq = '') { return $this->set("\x73\x76\147", $JqsAq); } }
+ namespace DagaSmart\BizAdmin\Renderers; class IconChecked extends BaseRenderer { public function __construct() { } public function id($PfrF0 = '') { return $this->set("\151\144", $PfrF0); } public function name($PfrF0 = '') { return $this->set("\x6e\x61\155\x65", $PfrF0); } public function svg($PfrF0 = '') { return $this->set("\163\166\x67", $PfrF0); } }

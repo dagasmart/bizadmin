@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 17:05:21              |
+    |  Authorization on 2026-01-29 22:52:33              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- use Illuminate\Support\Facades\Route; goto MhpbH; nejX3: Route::domain("\167\x77\167\56\x73\155\x61\x72\164\x2e\143\x6f\155")->get("\57", fn() => redirect("\x2f\x61\x70\151")); goto LkTr7; V4Y2U: Route::domain("\x65\162\x70\56\163\x6d\141\x72\x74\56\143\x6f\x6d")->get("\x2f", fn() => redirect("\x2f\x61\x64\x6d\151\156")); goto nejX3; MhpbH: Route::get("\x2f", function () { return view("\x77\145\x6c\x63\x6f\x6d\x65"); }); goto V4Y2U; LkTr7: Route::fallback(function () { admin_abort("\351\241\265\351\x9d\242\xe4\xb8\215\xe5\xad\230\345\234\250\357\xbc\210\345\x8f\257\350\x83\xbd\345\216\x9f\xe5\233\240\357\xbc\232\x31\56\xe8\xb7\257\xe7\224\xb1\xe6\234\xaa\345\256\232\344\271\211\357\xbc\233\62\56\346\x88\226\xe6\211\xa9\xe5\261\225\xe6\x8f\222\344\xbb\xb6\346\x9c\252\345\220\xaf\xe7\x94\250\xef\274\211"); });
+ use Illuminate\Support\Facades\Route; goto FE1Ze; eJXFC: Route::domain("\145\162\x70\56\163\155\141\x72\164\56\143\157\155")->get("\x2f", fn() => redirect("\57\141\144\x6d\151\156")); goto ymQTr; FE1Ze: Route::get("\57", function () { return view("\167\x65\154\143\x6f\x6d\x65"); }); goto eJXFC; ymQTr: Route::domain("\167\167\167\56\x73\155\x61\x72\x74\56\143\157\155")->get("\57", fn() => redirect("\x2f\141\x70\151")); goto SX_5w; SX_5w: Route::fallback(function () { admin_abort("\351\241\265\xe9\235\xa2\xe4\270\x8d\345\xad\x98\345\x9c\xa8\357\xbc\210\345\217\257\xe8\203\xbd\345\x8e\237\345\233\xa0\xef\xbc\x9a\x31\56\xe8\xb7\257\347\x94\261\346\234\xaa\345\xae\x9a\344\271\211\357\xbc\233\62\x2e\346\210\226\xe6\x89\251\xe5\xb1\225\xe6\x8f\222\xe4\xbb\xb6\346\x9c\252\345\x90\xaf\347\x94\xa8\xef\xbc\211"); });
