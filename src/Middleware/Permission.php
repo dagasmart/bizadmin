@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:34              |
+    |  Authorization on 2026-01-29 23:04:30              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Request; class Permission { public function handle(Request $uHfXz, Closure $H6mDO, ...$ci_Ea) { goto sblEF; BY6Id: RGK2A: goto ewl62; cpS3O: return Admin::response()->fail(admin_trans("\x61\144\155\x69\x6e\56\165\156\141\x75\164\x68\x6f\x72\x69\x7a\145\x64")); goto BY6Id; sblEF: if (!Admin::permission()->permissionIntercept($uHfXz, $ci_Ea)) { goto RGK2A; } goto cpS3O; ewl62: return $H6mDO($uHfXz); goto XZ1rp; XZ1rp: } }
+ namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Request; class Permission { public function handle(Request $SOpxq, Closure $u93QA, ...$UeTHX) { goto BHSdr; BHSdr: if (!Admin::permission()->permissionIntercept($SOpxq, $UeTHX)) { goto PtcQr; } goto Iefrn; GzyyE: PtcQr: goto Hffz1; Iefrn: return Admin::response()->fail(admin_trans("\141\144\x6d\151\156\x2e\x75\x6e\141\165\x74\x68\157\162\151\x7a\145\x64")); goto GzyyE; Hffz1: return $u93QA($SOpxq); goto aU7pR; aU7pR: } }

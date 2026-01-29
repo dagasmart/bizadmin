@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:33              |
+    |  Authorization on 2026-01-29 23:04:29              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- use Illuminate\Support\Facades\Route; goto FE1Ze; eJXFC: Route::domain("\145\162\x70\56\163\155\141\x72\164\56\143\157\155")->get("\x2f", fn() => redirect("\57\141\144\x6d\151\156")); goto ymQTr; FE1Ze: Route::get("\57", function () { return view("\167\x65\154\143\x6f\x6d\x65"); }); goto eJXFC; ymQTr: Route::domain("\167\167\167\56\x73\155\x61\x72\x74\56\143\157\155")->get("\57", fn() => redirect("\x2f\141\x70\151")); goto SX_5w; SX_5w: Route::fallback(function () { admin_abort("\351\241\265\xe9\235\xa2\xe4\270\x8d\345\xad\x98\345\x9c\xa8\357\xbc\210\345\217\257\xe8\203\xbd\345\x8e\237\345\233\xa0\xef\xbc\x9a\x31\56\xe8\xb7\257\347\x94\261\346\234\xaa\345\xae\x9a\344\271\211\357\xbc\233\62\x2e\346\210\226\xe6\x89\251\xe5\xb1\225\xe6\x8f\222\xe4\xbb\xb6\346\x9c\252\345\x90\xaf\347\x94\xa8\xef\xbc\211"); });
+ use Illuminate\Support\Facades\Route; goto qQgoH; xlEDZ: Route::domain("\x77\167\167\x2e\x73\155\x61\x72\x74\x2e\x63\157\x6d")->get("\x2f", fn() => redirect("\x2f\x61\160\151")); goto rmvNZ; qQgoH: Route::get("\x2f", function () { return view("\167\145\154\143\x6f\155\145"); }); goto Ota2l; Ota2l: Route::domain("\145\162\160\x2e\x73\155\141\162\x74\x2e\143\x6f\155")->get("\x2f", fn() => redirect("\57\141\x64\x6d\x69\156")); goto xlEDZ; rmvNZ: Route::fallback(function () { admin_abort("\351\241\xb5\351\x9d\242\xe4\270\x8d\345\xad\x98\345\234\250\357\xbc\210\345\x8f\xaf\350\203\275\345\x8e\x9f\xe5\x9b\xa0\357\274\x9a\x31\56\350\267\xaf\xe7\224\xb1\xe6\234\252\xe5\xae\x9a\xe4\271\211\xef\xbc\233\x32\56\xe6\210\226\346\211\xa9\345\xb1\x95\xe6\217\222\xe4\xbb\266\xe6\234\xaa\xe5\x90\xaf\347\x94\250\357\xbc\x89"); });
