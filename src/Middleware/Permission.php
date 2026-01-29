@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-23 17:05:38              |
+    |  Authorization on 2026-01-29 17:05:22              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Request; class Permission { public function handle(Request $xMi5L, Closure $n9V3Y, ...$bDu8f) { goto rGXBd; Xa7xr: BQm8T: goto rIW8W; rGXBd: if (!Admin::permission()->permissionIntercept($xMi5L, $bDu8f)) { goto BQm8T; } goto YF7Os; rIW8W: return $n9V3Y($xMi5L); goto k6UKz; YF7Os: return Admin::response()->fail(admin_trans("\x61\144\x6d\x69\x6e\x2e\165\156\x61\165\164\150\157\162\151\x7a\x65\144")); goto Xa7xr; k6UKz: } }
+ namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Request; class Permission { public function handle(Request $BmpF6, Closure $RvVDs, ...$t3cKA) { goto FvACH; qgSNN: return $RvVDs($BmpF6); goto vDKfW; JGdXR: CN7aU: goto qgSNN; J6ITE: return Admin::response()->fail(admin_trans("\141\x64\155\151\x6e\56\165\156\141\x75\x74\x68\157\162\x69\172\x65\x64")); goto JGdXR; FvACH: if (!Admin::permission()->permissionIntercept($BmpF6, $t3cKA)) { goto CN7aU; } goto J6ITE; vDKfW: } }
