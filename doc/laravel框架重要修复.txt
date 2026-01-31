@@ -152,12 +152,13 @@ trait BuilderView
     }
 
     //追加下以下代码：
-
     /**
      * Has a materialized view on the schema.
      */
-    public function materializedViewExists(string $name, string $schema = 'public')
+    public function materializedViewExists(string $name, string $schema = 'public'): bool
     {
-        $query = Query::toSql("SELECT * FROM pg_matviews WHERE matviewname='$name' AND schemaname='$schema'");
+        $array = explode('.', $name);
+        $name = array_pop($array);
+        $query = Query::toSql("SELECT matviewname as aggregate FROM pg_matviews WHERE matviewname='$name' AND schemaname='$schema'");
         return (bool) $this->getConnection()->selectOne($query);
     }
