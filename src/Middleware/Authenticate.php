@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 23:04:30              |
+    |  Authorization on 2026-03-22 00:00:28              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Response; class Authenticate { public function handle($SOpxq, Closure $u93QA) { goto Keu39; caxSL: fHzOa: goto TdFn8; r6Qtd: return $u93QA($SOpxq); goto pstdP; Keu39: if (!Admin::permission()->authIntercept($SOpxq)) { goto fHzOa; } goto s_9tj; s_9tj: return Admin::response()->additional(["\143\157\x64\145" => Response::HTTP_UNAUTHORIZED])->doNotDisplayToast()->fail(admin_trans("\x61\x64\x6d\x69\156\x2e\160\x6c\145\141\x73\x65\137\154\157\147\x69\156")); goto caxSL; TdFn8: Admin::permission()->checkUserStatus(); goto r6Qtd; pstdP: } }
+ namespace DagaSmart\BizAdmin\Middleware; use Closure; use DagaSmart\BizAdmin\Admin; use Illuminate\Http\Response; class Authenticate { public function handle($LiCd2, Closure $aMp88) { goto gVJmG; A9M6h: return $aMp88($LiCd2); goto GbX1d; m2kET: Admin::permission()->checkUserStatus(); goto A9M6h; wiTjU: Jh9z0: goto m2kET; gVJmG: if (!Admin::permission()->authIntercept($LiCd2)) { goto Jh9z0; } goto QO_lI; QO_lI: return Admin::response()->additional(["\x63\157\144\x65" => Response::HTTP_UNAUTHORIZED])->doNotDisplayToast()->fail(admin_trans("\x61\x64\155\x69\156\56\160\x6c\145\x61\163\145\137\x6c\x6f\x67\x69\156")); goto wiTjU; GbX1d: } }

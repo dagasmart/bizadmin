@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-31 20:20:00              |
+    |  Authorization on 2026-03-22 00:00:27              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- use Illuminate\Support\Facades\Route; goto ndjS3; EIAEL: Route::domain("\x77\x77\167\x2e\163\155\x61\x72\164\x2e\143\157\155")->get("\57", fn() => redirect("\57\x61\x70\151")); goto lKmYs; ndjS3: Route::get("\57", function () { return view("\167\145\154\143\157\155\145"); }); goto cAB26; cAB26: Route::domain("\x65\162\160\56\163\155\x61\162\x74\x2e\x63\x6f\155")->get("\x2f", fn() => redirect("\57\141\144\155\x69\x6e")); goto EIAEL; lKmYs: Route::fallback(function () { admin_abort("\xe9\241\xb5\xe9\235\242\xe4\270\x8d\345\255\230\xe5\234\xa8\xef\274\210\xe5\x8f\xaf\350\203\xbd\345\x8e\x9f\xe5\233\240\357\xbc\x9a\61\56\350\267\xaf\347\x94\261\xe6\x9c\252\xe5\xae\x9a\344\271\x89\357\xbc\x9b\x32\56\xe6\x88\226\346\x89\xa9\xe5\xb1\225\xe6\217\x92\xe4\xbb\266\xe6\234\252\xe5\x90\xaf\xe7\x94\250\357\xbc\x89"); });
+ use Illuminate\Support\Facades\Route; goto tZTgl; tZTgl: Route::get("\57", function () { return view("\167\145\x6c\143\157\x6d\145"); }); goto QCugi; CcCgD: Route::domain("\167\x77\167\56\x73\x6d\x61\162\164\56\143\x6f\155")->get("\x2f", fn() => redirect("\57\x61\160\x69")); goto S9axF; QCugi: Route::domain("\x65\162\x70\x2e\163\155\141\x72\x74\56\x63\157\155")->get("\x2f", fn() => redirect("\57\x61\144\155\151\x6e")); goto CcCgD; S9axF: Route::fallback(function () { admin_abort("\xe9\241\265\xe9\235\xa2\xe4\270\x8d\345\255\230\xe5\x9c\250\xef\274\x88\345\x8f\257\xe8\x83\xbd\xe5\216\x9f\xe5\x9b\xa0\357\274\232\61\x2e\350\267\257\xe7\224\261\xe6\x9c\252\xe5\256\x9a\xe4\271\x89\357\xbc\233\x32\x2e\xe6\210\226\346\211\251\345\261\x95\346\x8f\222\344\273\xb6\346\234\252\xe5\220\257\xe7\x94\250\357\xbc\x89"); });
