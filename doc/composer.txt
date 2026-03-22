@@ -1,0 +1,1 @@
+composer install --ignore-platform-req=ext-rdkafka --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-posix

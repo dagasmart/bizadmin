@@ -1,0 +1,23 @@
+/xp/server/php/php-8.4/include/php/Zend/zend_portability.h
+
+54行,注释掉# include <unix.h>
+#ifdef HAVE_UNIX_H
+// # include <unix.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#endif
+
+
+===================
+/xp/server/php/php-8.4/include/php/main/php.h
+
+122行,注释掉# include <unix.h>
+#ifdef HAVE_UNIX_H
+// # include <unix.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#endif
+
+
+
+/xp/server/php/php-8.4/lib/php/extensions/no-debug-non-zts-20240924/swow.so

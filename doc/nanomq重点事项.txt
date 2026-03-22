@@ -1,0 +1,10 @@
+docker拉取镜像：
+docker pull emqx/nanomq:latest-full
+
+创建docker实例：
+/xp/server/docker/docker run -d -p 21880:8081 -p 21883:1883 -p 21884:8083 -v /data/nanomq/conf/nanomq.conf:/etc/nanomq.conf --name nanomq emqx/nanomq:latest-full
+
+docker重点注意路径问题，nanomq.conf设置password不是指定的物理路径，而是实例下路径：
+比如：开启用户密码认证，docker实例下路径： 
+/var/lib/docker/overlay2/7257b6adbc0b115508185a8ae0a518b0ba049eb5c6d6533728f0c157a7a9eff1/diff/etc/nanomq_pwd.conf
+
