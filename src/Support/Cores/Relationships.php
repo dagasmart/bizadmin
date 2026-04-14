@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:41              |
+    |  Authorization on 2026-04-14 15:46:39              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Support\Cores; use DagaSmart\BizAdmin\Admin; use DagaSmart\BizAdmin\Services\AdminRelationshipService; class Relationships { public static function boot() { goto EkMmi; k6MeL: return; goto Wb_cX; AHVTV: if (Admin::hasTable($B9647->getModel()->getTable())) { goto GXsqY; } goto BsmLy; yrPl2: W4IUL: goto h7Gmo; EkMmi: $B9647 = new AdminRelationshipService(); goto AHVTV; B7zq_: if (!blank($P3Z9t)) { goto ZxQZi; } goto k6MeL; BsmLy: return; goto qtjxE; qtjxE: GXsqY: goto XZtGK; CZ5yB: foreach ($P3Z9t as $zZvw1) { try { $zZvw1->model::resolveRelationUsing($zZvw1->title, function ($ru9lv) use($zZvw1) { $V_yoa = $zZvw1->method; return $ru9lv->{$V_yoa}(...array_column($zZvw1->buildArgs(), "\166\x61\x6c\x75\x65")); }); } catch (\Throwable $r2JVV) { } VuEe8: } goto yrPl2; XZtGK: $P3Z9t = $B9647->make()->getAll(); goto B7zq_; Wb_cX: ZxQZi: goto CZ5yB; h7Gmo: } }
+ namespace DagaSmart\BizAdmin\Support\Cores; use DagaSmart\BizAdmin\Admin; use DagaSmart\BizAdmin\Services\AdminRelationshipService; class Relationships { public static function boot() { goto HarZW; eZARC: return; goto ZO2WQ; ysBd9: Gka1C: goto cTu89; HarZW: $SW2k3 = new AdminRelationshipService(); goto gT_R7; V6OOp: if (!blank($T1QVi)) { goto QuJq4; } goto eZARC; gUOqS: foreach ($T1QVi as $YEjWc) { try { $YEjWc->model::resolveRelationUsing($YEjWc->title, function ($ym6xK) use($YEjWc) { $sJodL = $YEjWc->method; return $ym6xK->{$sJodL}(...array_column($YEjWc->buildArgs(), "\x76\x61\154\165\x65")); }); } catch (\Throwable $gisIz) { } XdoEZ: } goto ysBd9; EG_Gw: return; goto KhF9C; ZO2WQ: QuJq4: goto gUOqS; KhF9C: nVuaP: goto vNoLl; gT_R7: if (Admin::hasTable($SW2k3->getModel()->getTable())) { goto nVuaP; } goto EG_Gw; vNoLl: $T1QVi = $SW2k3->make()->getAll(); goto V6OOp; cTu89: } }

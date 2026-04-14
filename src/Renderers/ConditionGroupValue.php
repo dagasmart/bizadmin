@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:36              |
+    |  Authorization on 2026-04-14 15:46:37              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class ConditionGroupValue extends BaseRenderer { public function __construct() { $this->set("\143\157\x6e\152\165\156\143\164\151\x6f\156", "\141\156\144"); } public function children($PfrF0 = '') { return $this->set("\143\x68\151\154\144\162\145\156", $PfrF0); } public function conjunction($PfrF0 = '') { return $this->set("\143\157\156\x6a\165\x6e\143\x74\151\x6f\156", $PfrF0); } public function id($PfrF0 = '') { return $this->set("\x69\x64", $PfrF0); } public function if($PfrF0 = '') { return $this->set("\x69\x66", $PfrF0); } public function not($PfrF0 = true) { return $this->set("\x6e\157\164", $PfrF0); } }
+ namespace DagaSmart\BizAdmin\Renderers; class ConditionGroupValue extends BaseRenderer { public function __construct() { $this->set("\143\157\x6e\x6a\165\x6e\143\164\151\157\156", "\x61\156\144"); } public function children($msRQo = '') { return $this->set("\143\150\x69\154\x64\162\x65\156", $msRQo); } public function conjunction($msRQo = '') { return $this->set("\143\x6f\156\152\165\156\143\x74\151\157\x6e", $msRQo); } public function id($msRQo = '') { return $this->set("\x69\x64", $msRQo); } public function if($msRQo = '') { return $this->set("\x69\146", $msRQo); } public function not($msRQo = true) { return $this->set("\156\x6f\x74", $msRQo); } }

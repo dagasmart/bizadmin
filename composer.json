@@ -24,14 +24,18 @@
     ],
     "require": {
         "php": ">=8.3",
-        "illuminate/support": ">=11",
+        "illuminate/support": "^11.0|^12.0|^13.0",
         "dagasmart/laravel-support": "*",
         "dagasmart/login-guard": "*",
         "dagasmart/operation-log": "*",
+        "dagasmart/social": "*",
         "dagasmart/system-backup": "*",
         "dagasmart/task-schedule": "*",
+        "ext-openssl": "*",
+        "ext-curl": "*",
         "ext-zip": "*",
         "ext-gd": "*",
+        "ext-pdo": "*"
         "ext-pdo": "*"
     },
     "autoload": {

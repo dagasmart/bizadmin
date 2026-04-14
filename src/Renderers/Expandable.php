@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:36              |
+    |  Authorization on 2026-04-14 15:46:37              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class Expandable extends BaseRenderer { public function __construct() { } public function expandableOn($PfrF0 = '') { return $this->set("\x65\170\160\x61\x6e\144\x61\x62\x6c\x65\x4f\156", $PfrF0); } public function expandedRowClassNameExpr($PfrF0 = '') { return $this->set("\x65\x78\160\141\156\144\x65\144\122\x6f\x77\x43\x6c\141\163\163\x4e\141\x6d\x65\105\x78\x70\x72", $PfrF0); } public function expandedRowKeys($PfrF0 = '') { return $this->set("\x65\170\x70\x61\x6e\144\x65\x64\x52\157\x77\x4b\145\171\163", $PfrF0); } public function expandedRowKeysExpr($PfrF0 = '') { return $this->set("\145\x78\160\141\x6e\144\145\144\122\157\x77\113\145\171\163\x45\x78\160\x72", $PfrF0); } public function keyField($PfrF0 = '') { return $this->set("\153\145\x79\x46\151\x65\x6c\144", $PfrF0); } public function type($PfrF0 = '') { return $this->set("\x74\171\160\145", $PfrF0); } }
+ namespace DagaSmart\BizAdmin\Renderers; class Expandable extends BaseRenderer { public function __construct() { } public function expandableOn($msRQo = '') { return $this->set("\x65\170\160\x61\156\x64\141\x62\x6c\x65\117\x6e", $msRQo); } public function expandedRowClassNameExpr($msRQo = '') { return $this->set("\145\170\160\141\x6e\144\x65\144\122\x6f\167\103\154\x61\163\x73\116\x61\x6d\145\x45\x78\160\162", $msRQo); } public function expandedRowKeys($msRQo = '') { return $this->set("\145\x78\x70\x61\156\x64\x65\x64\x52\x6f\167\113\145\171\x73", $msRQo); } public function expandedRowKeysExpr($msRQo = '') { return $this->set("\x65\170\160\141\156\x64\145\x64\122\157\x77\x4b\x65\x79\x73\x45\x78\160\x72", $msRQo); } public function keyField($msRQo = '') { return $this->set("\153\x65\x79\106\151\145\x6c\x64", $msRQo); } public function type($msRQo = '') { return $this->set("\164\x79\x70\145", $msRQo); } }

@@ -2,10 +2,10 @@
 /*
     |__________________________________________________
     |  DagaSmart CE pro by 3.0.17  |
-    |  Authorization on 2026-01-29 22:52:38              |
+    |  Authorization on 2026-04-14 15:46:38              |
     |  GitHub: https://github.com/dagasmart/bizadmin    |
     |  Tel: 13511953492   |
     |  Email: dagasmart@qq.com   |
     |__________________________________________________|
 */
- namespace DagaSmart\BizAdmin\Renderers; class RowSelection extends BaseRenderer { public function __construct() { } public function columnWidth($PfrF0 = '') { return $this->set("\x63\x6f\x6c\x75\155\x6e\127\x69\144\x74\150", $PfrF0); } public function disableOn($PfrF0 = '') { return $this->set("\144\x69\x73\x61\142\x6c\145\117\156", $PfrF0); } public function keyField($PfrF0 = '') { return $this->set("\x6b\145\171\x46\x69\145\154\x64", $PfrF0); } public function rowClick($PfrF0 = true) { return $this->set("\162\157\167\103\154\151\x63\153", $PfrF0); } public function selectedRowKeys($PfrF0 = '') { return $this->set("\163\145\154\x65\143\x74\x65\144\x52\157\x77\113\145\171\x73", $PfrF0); } public function selectedRowKeysExpr($PfrF0 = '') { return $this->set("\x73\x65\x6c\145\143\x74\x65\144\x52\x6f\x77\x4b\x65\171\163\x45\170\160\162", $PfrF0); } public function selections($PfrF0 = '') { return $this->set("\x73\x65\x6c\x65\143\x74\x69\x6f\x6e\163", $PfrF0); } public function type($PfrF0 = '') { return $this->set("\x74\171\160\x65", $PfrF0); } }
+ namespace DagaSmart\BizAdmin\Renderers; class RowSelection extends BaseRenderer { public function __construct() { } public function columnWidth($msRQo = '') { return $this->set("\143\x6f\x6c\x75\155\x6e\127\x69\144\164\x68", $msRQo); } public function disableOn($msRQo = '') { return $this->set("\x64\x69\x73\141\x62\x6c\145\117\x6e", $msRQo); } public function keyField($msRQo = '') { return $this->set("\153\x65\x79\x46\151\145\154\x64", $msRQo); } public function rowClick($msRQo = true) { return $this->set("\x72\x6f\167\x43\x6c\x69\x63\153", $msRQo); } public function selectedRowKeys($msRQo = '') { return $this->set("\x73\x65\x6c\x65\x63\164\145\144\122\x6f\x77\113\145\171\x73", $msRQo); } public function selectedRowKeysExpr($msRQo = '') { return $this->set("\163\145\x6c\145\143\x74\145\x64\122\157\x77\x4b\x65\171\x73\x45\170\160\162", $msRQo); } public function selections($msRQo = '') { return $this->set("\x73\x65\x6c\145\143\x74\x69\x6f\156\x73", $msRQo); } public function type($msRQo = '') { return $this->set("\x74\x79\160\x65", $msRQo); } }

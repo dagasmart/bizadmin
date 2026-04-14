@@ -2,258 +2,220 @@
 
 use DagaSmart\BizAdmin\Admin;
 
-$msgBtn = amis()
-    ->Icon()
-    ->icon('iconfont icon-bell')
-    ->className('text-xl mr-5')
-    ->style(['color'=>''])
-    ->badge(['mode' => 'text', 'position' => 'top-left', 'text' => '10'])
-    ->onEvent([
-        'click' => [
-            'actions' => [
-                amis()
-                    ->DrawerAction()
-                    ->drawer(
-                        amis()
-                            ->Drawer()
-                            ->resizable(false)
-                            ->closeOnEsc()
-                            ->showCloseButton(false)
-                            ->closeOnOutside()
-                            ->title(false)
-                            ->headerClassName(false)
-                            ->bodyClassName('bg-gray-100 p-0 overflow-hidden')
-                            ->actions()
-                            ->body([
-                                amis()
-                                    ->Tabs()
-                                    ->draggable()
-                                    ->tabsMode('chrome')
-                                    ->tabs([
-                                        // 系统消息
-                                        amis()->Tab()->title('系统消息')->body([
-                                            amis()->Page()
-                                                ->style([
-                                                    'padding'=>'none',
-                                                    'height' => 'calc(100vh - 91px)',
-                                                    'border-color' => 'var(--colors-brand-6)',
-                                                    'overflow' => 'hidden'
-                                                ])
-                                                ->className('rounded-xl border border-blue-500 border-dashed')
+$body = amis()->Page()->body([
+    amis()
+        ->Service()
+        ->api(admin_url('/system/message/badge/count'))
+        ->interval(random_int(5000,5500))
+        ->silentPolling()
+        ->messages('连接失败，请检查网络')
+        ->showErrorMsg(false)
+        ->body([
+            amis()->Icon()
+                ->icon('bell')
+                ->vendor('iconfont')
+                ->className('text-xl mr-3 ${blink}')
+                ->badge(['mode' => 'text', 'position' => 'top-left', 'text' => '${(data && DECODEJSON(data).message.count) || count || 0}'])
+                ->onEvent([
+                    'click' => [
+                        'actions' => [
+                            amis()
+                                ->DrawerAction()
+                                ->drawer(
+                                    amis()
+                                        ->Drawer()
+                                        ->closeOnEsc()
+                                        ->closeOnOutside()
+                                        ->showCloseButton(false)
+                                        ->title(false)
+                                        ->resizable(false)
+                                        ->headerClassName(false)
+                                        ->bodyClassName('p-1 overflow-hidden')
+                                        ->data(['isBell' => false])
+                                        ->actions()
+                                        ->body([
+                                            amis()->Service()
+                                                ->id('admin_message_drawer')
+                                                ->api(admin_url('/system/message/badge/data'))
+                                                ->interval(5000)
+                                                ->silentPolling()
+                                                ->showErrorMsg(false)
                                                 ->body([
-                                                    amis()->Card()
-                                                        ->style(['height' => 'calc(100vh - 91px)'])
-                                                        ->className('border-0 overflow-y-auto')
-                                                        ->body([
-                                                            amis()->GroupControl()->direction('vertical')->body([
-                                                                amis()->Alert()
-                                                                    ->level('warning')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
+                                                    amis()
+                                                        ->Tabs()
+                                                        ->draggable()
+                                                        ->tabsMode('line')
+                                                        ->tabs([
+                                                            // 系统通知
+                                                            amis()->Tab()
+                                                                ->title([
+                                                                    amis()->Container()->body([
+                                                                        amis()->Tpl()->tpl('系统')->badge([
+                                                                            'mode' => 'text',
+                                                                            'text' => '${badge_system_count || 0}',
+                                                                            'visibleOn' => '${badge_system_count > 0}',
+                                                                        ]),
                                                                     ])
-                                                                    ->body(['创建成功']),
-
-                                                                amis()->Alert()
-                                                                    ->level('success')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
+                                                                ])
+                                                                ->icon('iconfont icon-official-notice')
+                                                                ->body([
+                                                                    amis()->ButtonToolbar()->className('my-2')->buttons([
+                                                                        amis()->AjaxAction()
+                                                                            ->api('delete:/system/message/system/all')
+                                                                            ->reload('admin_message_drawer,admin_message_system')
+                                                                            ->label('全部已读')
+                                                                            ->confirmText('是否全部设为已读，可在【消息】管理继续查看')
+                                                                            ->confirmTitle('系统')
+                                                                            ->size('xs'),
+                                                                    ]),
+                                                                    amis()->Page()
+                                                                        ->style(['padding'=>'0','height' => 'calc(100vh - 160px)', 'overflow-x' => 'hidden'])
+                                                                        ->className('rounded-xl border-0 border-solid')
+                                                                        ->showErrorMsg(false)
+                                                                        ->body([
+                                                                            amis()->CRUD2List()
+                                                                                ->id('admin_message_system')
+                                                                                ->source('${tabs_system}')
+                                                                                ->interval(2000)
+                                                                                ->className('border-0')
+                                                                                ->headerToolbarClassName('hidden')
+                                                                                ->perPage(10)
+                                                                                ->listItem([
+                                                                                    'title' => '${title}',
+                                                                                    'subTitle' => '${from_name} / ${updated_at}',
+                                                                                    'className' => 'text-secondary',
+                                                                                    'desc' => '<h5 class="text-dark">${simplify}</h5>',
+                                                                                    'actions' => [
+                                                                                        amis()->AjaxAction()
+                                                                                            ->label('✕')
+                                                                                            ->api('delete:/system/message/${id}')
+                                                                                            ->reload('admin_message_drawer')
+                                                                                            ->style(['zoom' => 0.7])
+                                                                                            ->tooltip('已读移除')
+                                                                                            ->tooltipPlacement('left'),
+                                                                                    ],
+                                                                                ]),
+                                                                        ]),
+                                                                ]),
+                                                            // 站内信
+                                                            amis()->Tab()
+                                                                ->title([
+                                                                    amis()->Container()->body([
+                                                                        amis()->Tpl()->tpl('站内信')->badge([
+                                                                            'mode' => 'text',
+                                                                            'text' => '${badge_private_count || 0}',
+                                                                            'visibleOn' => '${badge_private_count > 0}',
+                                                                        ]),
                                                                     ])
-                                                                    ->body(['创建成功']),
+                                                                ])
+                                                                ->icon('iconfont icon-message-queue')
+                                                                ->body([
+                                                                    amis()->ButtonToolbar()->className('my-2')->buttons([
+                                                                        amis()->AjaxAction()
+                                                                            ->api('delete:/system/message/private/all')
+                                                                            ->reload('admin_message_drawer,admin_message_private')
+                                                                            ->label('全部已读')
+                                                                            ->confirmText('是否全部设为已读，可在【消息】管理继续查看')
+                                                                            ->confirmTitle('站内信')
+                                                                            ->size('xs'),
+                                                                                                                                                ]),
+                                                                    amis()->Page()
+                                                                        ->style(['padding'=>'none','height' => 'calc(100vh - 160px)', 'overflow-x' => 'hidden'])
+                                                                        ->className('rounded-xl border-0 border-solid')
+                                                                        ->showErrorMsg(false)
+                                                                        ->body([
+                                                                            amis()->CRUD2List()
+                                                                                ->id('admin_message_private')
+                                                                                ->source('${tabs_private}')
+                                                                                ->interval(2000)
+                                                                                ->className('border-0')
+                                                                                ->headerToolbarClassName('hidden')
+                                                                                ->perPage(10)
+                                                                                ->listItem([
+                                                                                    'title' => '${title}',
+                                                                                    'subTitle' => '${from_name} / ${updated_at}',
+                                                                                    'className' => 'text-secondary',
+                                                                                    'desc' => '<h5 class="text-dark">${simplify}</h5>',
+                                                                                    'actions' => [
+                                                                                        amis()->AjaxAction()
+                                                                                            ->label('✕')
+                                                                                            ->api('delete:/system/message/${id}')
+                                                                                            ->reload('admin_message_drawer')
+                                                                                            ->style(['zoom' => 0.7])
+                                                                                            ->tooltip('已读移除')
+                                                                                            ->tooltipPlacement('left'),
+                                                                                    ],
+                                                                                ]),
+                                                                        ]),
+                                                                ]),
 
-                                                                amis()->Alert()
-                                                                    ->level('info')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
+                                                            // 聊天
+                                                            amis()->Tab()
+                                                                ->title([
+                                                                    amis()->Container()->body([
+                                                                        amis()->Tpl()->tpl('聊天')->badge(['mode' => 'text', 'text' => 25]),
                                                                     ])
-                                                                    ->body(['创建成功']),
+                                                                ])
+                                                                ->icon('iconfont icon-header-message')
+                                                                ->body([
 
-                                                                amis()->Alert()
-                                                                    ->level('danger')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->icon('iconfont icon-duhome')
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
+                                                                ])
+                                                        ])->toolbar([
+                                                            amis()->SwitchControl('bell')
+                                                                ->onText(amis()->Icon()->icon('bell'))
+                                                                ->offText(amis()->Icon()->icon('bell'))
+                                                                ->style(['zoom' => 0.7])
+                                                                ->loadingOn('${isBell}')
+                                                                ->onEvent([
+                                                                    'change' => [
+                                                                        'actions' => [
+                                                                            [
+                                                                                'actionType' => 'setValue',
+                                                                                'componentId' => 'admin_message_drawer',
+                                                                                'args' => [
+                                                                                    'value' => [
+                                                                                        'isBell' => true
+                                                                                    ]
+                                                                                ]
+                                                                            ],
+                                                                            [
+                                                                                'actionType' => 'ajax',
+                                                                                'api' => [
+                                                                                    'method' => 'post',
+                                                                                    'url' => '/system/message/bell',
+                                                                                    'data' => [
+                                                                                        'bell' => '${value}'
+                                                                                    ],
+                                                                                    'silent' => true,
+                                                                                    'messages' => [
+                                                                                        'success' => '成功',
+                                                                                        'failed' => '失败',
+                                                                                    ]
+                                                                                ],
+                                                                                'ignoreError' => true,
+                                                                            ],
+                                                                            [
+                                                                                'actionType' => 'setValue',
+                                                                                'componentId' => 'admin_message_drawer',
+                                                                                'args' => [
+                                                                                    'value' => [
+                                                                                        'isBell' => false
+                                                                                    ]
+                                                                                ]
+                                                                            ],
+                                                                        ]
+                                                                    ]
+                                                                ]),
 
-                                                                        amis()->flex()
-                                                                            ->justify('flex-start')
-                                                                            ->alignItems('flex-start')
-                                                                            ->direction('column')
-                                                                            ->style(['padding'=>'6px'])
-                                                                            ->items([
-                                                                                amis()->button()
-                                                                                    ->label('详情')
-                                                                                    ->size('xs')
-                                                                                    ->level('primary')
-                                                                                    ->style([
-                                                                                        'position'=>'relative',
-                                                                                        'top'=>'30px',
-                                                                                        'left'=>'30px'
-                                                                                    ]),
-                                                                            ])
-                                                                    ])
-                                                                    ->body(['创建成功']),
+                                                        ])
+                                            ])
+                                        ])
+                                )
+                        ]
 
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                            ]),
-                                                        ]),
-                                                ]),
-                                        ]),
-                                        // 站内消息
-                                        amis()->Tab()->title('站内消息')->body([
-                                            amis()->Page()
-                                                ->style(['padding'=>'none','height' => 'calc(100vh - 91px)', 'overflow' => 'hidden'])
-                                                ->className('rounded-xl border border-blue-500 border-dashed')
-                                                ->body([
-                                                    amis()->Card()
-                                                        ->style(['height' => 'calc(100vh - 91px)'])
-                                                        ->className('border-0 overflow-y-auto')
-                                                        ->body([
-                                                            amis()->GroupControl()->direction('vertical')->body([
-                                                                amis()->Alert()
-                                                                    ->level('warning')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
-                                                                    ])
-                                                                    ->body(['创建成功']),
+                    ]
+                ]),
+        ]),
+]);
 
-                                                                amis()->Alert()
-                                                                    ->level('success')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
-                                                                    ])
-                                                                    ->body(['创建成功']),
-
-                                                                amis()->Alert()
-                                                                    ->level('info')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-                                                                        amis()->button()
-                                                                            ->label('查看详情')
-                                                                            ->size('xs')
-                                                                            ->level('link')
-                                                                            ->style([
-                                                                                'position'=>'relative',
-                                                                                'top'=>'40px',
-                                                                                'left'=>'30px'
-                                                                            ])
-                                                                    ])
-                                                                    ->body(['创建成功']),
-
-                                                                amis()->Alert()
-                                                                    ->level('danger')
-                                                                    ->className('mb-3')
-                                                                    ->showIcon()
-                                                                    ->icon('iconfont icon-duhome')
-                                                                    ->showCloseButton()
-                                                                    ->title('标题')
-                                                                    ->actions([
-
-                                                                        amis()->flex()
-                                                                            ->justify('flex-start')
-                                                                            ->alignItems('flex-start')
-                                                                            ->direction('column')
-                                                                            ->style(['padding'=>'6px'])
-                                                                            ->items([
-                                                                                amis()->button()
-                                                                                    ->label('详情')
-                                                                                    ->size('xs')
-                                                                                    ->level('primary')
-                                                                                    ->style([
-                                                                                        'position'=>'relative',
-                                                                                        'top'=>'30px',
-                                                                                        'left'=>'30px'
-                                                                                    ]),
-                                                                            ])
-                                                                    ])
-                                                                    ->body(['创建成功']),
-
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                                amis()->Alert()->className('bg-gray-50 border-gray-200 border-dashed shadow-md')->body('任务名称'),
-                                                            ]),
-                                                        ]),
-                                                ]),
-                                        ]),
-                                    ])
-                            ])
-                    )
-            ]
-
-        ]
-    ]);
-
-// 追加到已有按钮前
-Admin::prependNav($msgBtn);
+Admin::prependNav($body);
