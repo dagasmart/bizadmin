@@ -3,7 +3,7 @@
 
 ### 项目介绍
 
-基于laravel12、amis6、mysql8/pgsql17前后端分离开发的, 快速且灵活的后台管理框架
+基于laravel13、amis6、mysql8/pgsql17前后端分离开发的, 快速且灵活的后台管理框架
 
 - 基于 amis 以 json 的方式在后端构建页面，减少前端开发工作量，提升开发效率。
 - 在 amis 150多个组件都不满足的情况下, 可自行开发前端。
@@ -38,9 +38,12 @@
 ##### 1. 创建 `laravel` 项目
 
 ```php
-composer create-project --prefer-dist laravel/laravel my-app 12.*
+composer create-project --prefer-dist laravel/laravel my-app 13.*
+或通过 composer global require laravel/installer 升级到最新安装版本
+再执行创建项目：
+laravel new my-app
+一路回车确认即可
 ```
-
 ##### 2. 配置数据库信息并安装 `api` 模块
 
 ```dotenv
