@@ -28,7 +28,6 @@
         "dagasmart/laravel-support": "*",
         "dagasmart/login-guard": "*",
         "dagasmart/operation-log": "*",
-        "dagasmart/social": "*",
         "dagasmart/system-backup": "*",
         "dagasmart/task-schedule": "*",
         "ext-openssl": "*",
