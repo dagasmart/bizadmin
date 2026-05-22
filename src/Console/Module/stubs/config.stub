@@ -51,8 +51,10 @@ return [
                 'model'  => \{{model_namespace}}\AdminUser::class,
             ],
         ],
-        'except'        => [
-
+        // 可放行权限
+        'except'           => [
+            'system/message/badge/*',
+            '/user_change/*',
         ],
     ],
 

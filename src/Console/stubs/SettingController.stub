@@ -37,12 +37,13 @@ class SettingController extends AdminController
             ->body(
                 amis()->Tabs()->tabs([
                     amis()->Tab()->title('基本设置')->body([
-                        amis()->TextControl()->label('网站名称')->name('site_name'),
+                        amis()->TextControl('site_name', '网站名称')->size('lg'),
+                        amis()->ImageControl('site_logo', '网站Logo'),
                         amis()->InputKV()->label('附加配置')->name('addition_config'),
                     ]),
                     amis()->Tab()->title('上传设置')->body([
-                        amis()->TextControl()->label('上传域名')->name('upload_domain'),
-                        amis()->TextControl()->label('上传路径')->name('upload_path'),
+                        amis()->TextControl('upload_domain', '上传域名')->size('lg'),
+                        amis()->TextControl('upload_path', '上传路径')->size('lg'),
                     ]),
                 ])
             );
@@ -52,10 +53,14 @@ class SettingController extends AdminController
     {
         $data = $request->only([
             'site_name',
+            'site_logo',
             'addition_config',
             'upload_domain',
             'upload_path',
         ]);
+        if (isset($data['site_logo'])) {
+            $data['site_logo'] = admin_image_path($data['site_logo']);
+        }
 
         return settings()->adminSetMany($data);
     }

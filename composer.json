@@ -23,11 +23,12 @@
         "amis"
     ],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.4",
         "illuminate/support": "^11.0|^12.0|^13.0",
         "dagasmart/laravel-support": "*",
         "dagasmart/login-guard": "*",
         "dagasmart/operation-log": "*",
+        "dagasmart/social": "*",
         "dagasmart/system-backup": "*",
         "dagasmart/task-schedule": "*",
         "ext-openssl": "*",

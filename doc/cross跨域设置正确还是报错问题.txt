@@ -1,0 +1,10 @@
+config下自动加载失败类库也会导致跨域问题
+注意config下清除失败时，删除对应配置文件
+
+如果你在生产环境或使用了配置缓存，修改完 config/cors.php 后，必须运行以下命令使配置生效：
+php artisan config:clear
+# 或者如果是生产环境
+php artisan config:cache
+
+
+小皮面板网站开启防火墙导致的跨域问题，建议地区ip不限制或关闭
