@@ -32,6 +32,7 @@
         "dagasmart/system-backup": "*",
         "dagasmart/task-schedule": "*",
         "dagasmart/nestedset": "*",
+	"dagasmart/laravel-ip2region": "*",
         "ext-openssl": "*",
         "ext-curl": "*",
         "ext-zip": "*",
@@ -42,7 +43,7 @@
     "autoload": {
         "psr-4": {
             "DagaSmart\\BizAdmin\\": "src/",
-            "Modules\\": "/modules/"
+            "Modules\\": "modules/"
         },
         "files": [
             "src/Support/helpers.php"
